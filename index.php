@@ -34,6 +34,7 @@ $assets = [
     'engine_classic' => 'assets/js/variants/classic/engine.js',
     'engine_giveaway' => 'assets/js/variants/giveaway/engine.js',
     'engine_czech-8' => 'assets/js/variants/czech-8/engine.js',
+    'ai_czech-8' => 'assets/js/variants/czech-8/ai.js',
     'engine_czech-zapletal' => 'assets/js/variants/czech-zapletal/engine.js',
 ];
 $assetVersions = [];
