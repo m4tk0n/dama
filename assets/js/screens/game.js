@@ -6,6 +6,7 @@ export async function mount({root,state,versions}) {
  const caption=root.querySelector('#game-caption'),board=root.querySelector('#board-2d');
  const boardWrap=root.querySelector('.board-wrap'),turnPanel=root.querySelector('.turn-panel'),actions=root.querySelector('.game-actions');
  const supported=['classic','giveaway','czech-8','czech-zapletal'];
+ const aiEnabled=state.opponent==='ai'&&(variant==='czech-8'||variant==='czech-zapletal');
  title.textContent=names[variant]||'Neznámá varianta';
  if(variant==='international-10'){
   const css=document.createElement('link');css.rel='stylesheet';css.href='assets/css/board-2d.css?v='+encodeURIComponent(versions.boardCss||'0');css.dataset.boardCss='true';document.head.append(css);
@@ -28,7 +29,7 @@ export async function mount({root,state,versions}) {
   'czech-zapletal':'../variants/czech-zapletal/engine.js'
  };
  const engine=await import(enginePaths[variant]+'?v='+encodeURIComponent(versions['engine_'+variant]||'1'));
- mode.textContent=state.opponent==='ai'?(variant==='czech-8'?'Proti AI':'AI není pro tuto variantu dostupná'):'2 hráči';
+ mode.textContent=state.opponent==='ai'?(aiEnabled?'Proti AI':'AI není pro tuto variantu dostupná'):'2 hráči';
  let game=null,selected=null,message='Vyberte svou figurku.';
  let aiModule=null,aiThinking=false;
  const aiPlayer='black';
@@ -57,7 +58,8 @@ export async function mount({root,state,versions}) {
  function start(startingPlayer){
   aiThinking=false;
   game=variant==='classic'||variant==='giveaway'?engine.createInitialState({startingPlayer}):engine.createInitialState();
-  selected=null;message=state.opponent==='ai'&&variant!=='czech-8'?'AI je zatím dostupná pouze pro Českou dámu podle ČFD.':'Vyberte svou figurku.';boardWrap.hidden=false;actions.hidden=false;render();
+  selected=null;message=state.opponent==='ai'&&!aiEnabled?'AI není pro tuto variantu dostupná.':'Vyberte svou figurku.';boardWrap.hidden=false;actions.hidden=false;render();
+  if(aiEnabled&&game.currentPlayer===aiPlayer)void runAiTurn();
  }
  async function runAiTurn(){
   if(!aiModule||!game||game.gameOver||aiThinking||game.currentPlayer!==aiPlayer)return;
@@ -94,7 +96,7 @@ export async function mount({root,state,versions}) {
   render();
  }
  board.addEventListener('click',event=>{
-  if(!game||game.gameOver||game.blocked||aiThinking||(state.opponent==='ai'&&variant==='czech-8'&&game.currentPlayer===aiPlayer))return;
+  if(!game||game.gameOver||game.blocked||aiThinking||(aiEnabled&&game.currentPlayer===aiPlayer))return;
   const cell=event.target.closest('[data-cell-index]');if(!cell)return;
   const index=Number(cell.dataset.cellIndex);if(!Number.isInteger(index))return;
   const source=game.pending?game.pending.pieceIndex:selected;
@@ -109,7 +111,7 @@ export async function mount({root,state,versions}) {
       const destinationPiece=board.querySelector('[data-cell-index="'+move.to+'"] .board-piece'),rect=destinationPiece?.getBoundingClientRect();
       if(destinationPiece&&rect){destinationPiece.style.transition='none';destinationPiece.style.transform='translate('+(sourceRect.left-rect.left)+'px,'+(sourceRect.top-rect.top)+'px)';destinationPiece.getBoundingClientRect();requestAnimationFrame(()=>{destinationPiece.style.transition='';destinationPiece.style.transform='';})}
      }
-     if(result.turnFinished&&state.opponent==='ai'&&variant==='czech-8'&&game.currentPlayer===aiPlayer)void runAiTurn();
+     if(result.turnFinished&&aiEnabled&&game.currentPlayer===aiPlayer)void runAiTurn();
     }
     return;
    }
@@ -122,6 +124,10 @@ export async function mount({root,state,versions}) {
  root.querySelector('#restart-game').addEventListener('click',()=>{
   if(variant==='classic'||variant==='giveaway')chooseStartingPlayer();else start();
  });
- if(state.opponent==='ai'&&variant==='czech-8')aiModule=await import('../variants/czech-8/ai.js?v='+encodeURIComponent(versions['ai_czech-8']||'1'));
+ if(aiEnabled){
+  const aiPath=variant==='czech-zapletal'?'../variants/czech-zapletal/ai.js':'../variants/czech-8/ai.js';
+  const aiVersion=versions['ai_'+variant]||'1';
+  aiModule=await import(aiPath+'?v='+encodeURIComponent(aiVersion));
+ }
  if(variant==='classic'||variant==='giveaway')chooseStartingPlayer();else start();
 }
