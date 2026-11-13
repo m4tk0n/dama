@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.008**
+**Aktuální projektová verze: 01.00.009**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -111,9 +111,20 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-008 | AI – učení | Připravit sběr partií, self-play, trénování, váhy a měření výkonnosti | PLÁN |
 | R-009 | Testování | Zavést automatické testy pravidel, herní logiky, API a regresí | PLÁN |
 | R-010 | Nasazení | Ověřit bezpečné automatické nasazení na Webzdarma bez přepsání `.env` | PLÁN |
-| R-011 | Variantní architektura | Oddělit Klasickou, Žravou, Českou a Mezinárodní dámu: samostatná pravidla, rozestavení, enginy a testy; sdílet pouze vykreslení desky, kamenů a obecné ovládání | ROZPRACOVÁNO |
+| R-011 | Variantní architektura | Všech 16 pojmenovaných variant z Wikipedie má samostatnou položku ve výběru a vlastní pravidla, rozestavení, engine a testy; sdílet pouze vykreslení desky, kamenů a obecné ovládání | ROZPRACOVÁNO |
 
 ## 6. Záznamy významných změn
+
+### 01.00.009 – Kompletní výběr variant z české Wikipedie
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Výběr místní hry obsahuje všech 16 pojmenovaných variant uvedených v článku české Wikipedie. Každá má samostatné ID a vlastní soubor pravidel nebo osnovu. Herní obrazovka spustí pouze implementovanou Českou dámu podle ČFD; Mezinárodní dáma zůstává testovacím náhledem a ostatní varianty zobrazí informaci o chybějícím enginu, místo aby nesprávně použily česká pravidla.
+- **Důvod:** Zobrazit kompletní katalog variant a zabránit záměně pouhé dostupnosti ve výběru za dokončenou implementaci.
+- **Dotčené soubory:** pages/create.html, assets/js/screens/game.js, docs/GAME_VARIANTS.md, docs/REQUIREMENTS.md, docs/AI_WORK_INSTRUCTIONS.md, docs/ROADMAP.md a samostatné osnovy pravidel nových variant.
+- **Zdroj katalogu:** https://cs.wikipedia.org/wiki/Dáma_(desková_hra)
+- **Ověření:** Automatické kontroly budou potvrzeny výsledkem GitHub Actions.
+- **Commit:** doplní se po zápisu.
 
 ### 01.00.008 – Oddělení čtyř herních variant
 
