@@ -14,6 +14,8 @@ function assetVersion(string $relativePath): string
 }
 
 $assets = [
+    'homeHtml' => 'pages/home.html',
+    'homeJs' => 'assets/js/screens/home.js',
     'createHtml' => 'pages/create.html',
     'createJs' => 'assets/js/screens/create.js',
     'gameHtml' => 'pages/game.html',
@@ -52,21 +54,7 @@ foreach ($assets as $key => $path) {
 <button class="button button-outline login-button" type="button" data-screen="login">Přihlásit se</button>
 </header>
 <main id="app-view" data-assets="<?= htmlspecialchars((string) json_encode($assetVersions, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT), ENT_QUOTES, 'UTF-8') ?>" aria-live="polite">
-<section class="screen is-active" aria-labelledby="home-title">
-<div class="home-content">
-<p class="eyebrow">Herní centrum</p>
-<h1 id="home-title">Dáma</h1>
-<p class="intro">Vyberte si způsob hry.</p>
-<nav class="main-menu" aria-label="Hlavní nabídka">
-<button class="menu-button menu-primary" type="button" data-screen="create">Místní hra</button>
-<button class="menu-button" type="button" data-action="my-games" disabled>Moje hry</button>
-<button class="menu-button" type="button" data-screen="rooms">Místnosti</button>
-<button class="menu-button" type="button" data-screen="online">Online hra</button>
-<button class="menu-button" type="button" data-screen="rules">Pravidla</button>
-</nav>
-<p class="muted-note">Moje hry budou dostupné po přihlášení.</p>
-</div>
-</section>
+
 </main>
 <footer class="app-footer"><span>Dáma</span><span>První vývojová verze</span></footer>
 </div>
