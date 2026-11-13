@@ -1,27 +1,53 @@
 export async function mount({root,state,versions}) {
- const cssUrl='assets/css/board-2d.css?v='+encodeURIComponent(versions.boardCss||'0');
- if(!document.querySelector('[data-board-css]')){
-  const link=document.createElement('link');link.rel='stylesheet';link.href=cssUrl;link.dataset.boardCss='true';document.head.append(link);
- }
- const boardModule=await import('../board-2d.js?v='+encodeURIComponent(versions.boardJs||'0'));
- const size=state.variant==='international-10'?10:8;
+ const variant=state.variant||'czech-8';
+ const variantNames={
+  classic:'Klasická dáma',giveaway:'Žravá dáma','czech-8':'Česká dáma podle ČFD','czech-zapletal':'Česká dáma dle Zapletala',
+  english:'Anglická dáma','international-10':'Mezinárodní dáma','brazilian':'Brazilská dáma','spanish':'Španělská dáma',
+  turkish:'Turecká (Keny) dáma',corner:'Rohová dáma','twenty-ten':'Dvacet proti deseti','medieval-battle':'Středověká bitva',
+  knight:'Jezdecká dáma',dam:'Dám',canadian:'Kanadská dáma',double:'Dvojitá dáma'
+ };
  const title=root.querySelector('#game-title');
  const mode=root.querySelector('#game-mode-label');
  const status=root.querySelector('#game-status');
  const hint=root.querySelector('#game-hint');
  const caption=root.querySelector('#game-caption');
  const board=root.querySelector('#board-2d');
- if(size===10){
+ const boardWrap=root.querySelector('.board-wrap');
+ const turnPanel=root.querySelector('.turn-panel');
+ const actions=root.querySelector('.game-actions');
+
+ if(variant!=='czech-8'&&variant!=='international-10'){
+  title.textContent=variantNames[variant]||'Neznámá varianta';
+  mode.textContent='Připravuje se';
+  turnPanel.hidden=true;
+  boardWrap.hidden=true;
+  actions.hidden=true;
+  caption.textContent='Tato varianta je zahrnuta ve výběru, ale její samostatná pravidla, počáteční rozestavení a herní engine ještě nejsou dokončené. Nelze ji zatím spustit jako hratelnou partii.';
+  return;
+ }
+
+ const cssUrl='assets/css/board-2d.css?v='+encodeURIComponent(versions.boardCss||'0');
+ if(!document.querySelector('[data-board-css]')){
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href=cssUrl;
+  link.dataset.boardCss='true';
+  document.head.append(link);
+ }
+ const boardModule=await import('../board-2d.js?v='+encodeURIComponent(versions.boardJs||'0'));
+
+ if(variant==='international-10'){
   boardModule.renderInitialBoard(board,10);
   title.textContent='Mezinárodní dáma 10×10';
   mode.textContent='Test zobrazení';
-  root.querySelector('.turn-panel').hidden=true;
-  root.querySelector('.game-actions').hidden=true;
+  turnPanel.hidden=true;
+  actions.hidden=true;
   caption.textContent='Testovací náhled desky 10×10. Pravidla a pohyb figurek této varianty zatím nejsou implementovány.';
   return;
  }
+
  const engine=await import('../game-engine.js?v='+encodeURIComponent(versions.gameEngine||'0'));
- title.textContent='Česká dáma 8×8';
+ title.textContent='Česká dáma podle ČFD 8×8';
  mode.textContent=state.opponent==='ai'?'AI – ruční test':'2 hráči';
  let game=engine.createInitialState();
  let selected=null;
