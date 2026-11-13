@@ -1,40 +1,25 @@
 # Pravidla Mezinárodní dámy
 
-**STAV: NEÚPLNÉ – zatím neschváleno**
-
-Tento soubor je vyhrazen výhradně pravidlům Mezinárodní dámy. Nesmí používat česká pravidla ani se odvozovat pouze z rozměru desky 10×10.
-
-Dokud nebudou jednotlivé body ověřeny a potvrzeny, varianta nesmí být implementována jako hratelná. Současný náhled desky 10×10 je pouze vizuální.
+**Zdrojový rozsah:** stručná pravidla uvedená v českém článku Wikipedie. Článek říká, že ostatní pravidla vycházejí z klasické dámy; níže jsou zaznamenány výslovně uvedené parametry a odlišnosti.
 
 ## 1. Deska a počáteční rozestavení
-- Rozměr desky: NEOVĚŘENO
-- Aktivní políčka: NEOVĚŘENO
-- Počet kamenů na hráče: NEOVĚŘENO
-- Počáteční rozmístění: NEOVĚŘENO
-- Hráč, který začíná: NEOVĚŘENO
+- Hraje se na šachovnici 10×10.
+- Každý hráč má 20 kamenů.
+- Kameny stojí v prvních čtyřech řadách na protilehlých stranách desky.
 
-## 2. Pohyb obyčejného kamene
-- Směr a délka tahu: NEOVĚŘENO
-- Pohyb při braní: NEOVĚŘENO
+## 2. Pohyb a braní obyčejného kamene
+- Základ pravidel vychází z klasické dámy.
+- Obyčejný kámen může při braní skákat také dozadu.
+- Pokud kámen při skoku projde přes poslední řadu, ale na konci celé sekvence na ní nezůstane, nepromění se v dámu.
+- Přeskok je povinný.
 
-## 3. Dáma
-- Způsob proměny: NEOVĚŘENO
-- Pohyb dámy: NEOVĚŘENO
-- Braní dámou: NEOVĚŘENO
+## 3. Priorita braní
+- Přednost má sekvence, při které hráč přeskočí větší počet kamenů.
+- Tato priorita platí i před braním dámou: počet braných kamenů má přednost před typem figury.
 
-## 4. Braní a pokračování tahu
-- Povinnost braní: NEOVĚŘENO
-- Přednost nebo výběr mezi braními: NEOVĚŘENO
-- Vícenásobné braní: NEOVĚŘENO
-- Odstraňování braných kamenů: NEOVĚŘENO
+## 4. Další pravidla
+- Pohyb dámy a další pravidla vycházejí podle článku z klasické dámy.
+- Článek zde neuvádí všechny podrobnosti mezinárodních pravidel, zejména přesný způsob braní dámou, odstraňování kamenů, volbu při shodném počtu braných figur a pravidla remízy. Tyto detaily je nutné před implementací ověřit z úplných pravidel FMJD.
 
-## 5. Konec partie
-- Podmínky vítězství: NEOVĚŘENO
-- Podmínky remízy a opakování pozic: NEOVĚŘENO
-
-## 6. Zdroje a schválení
-- Ověřený zdroj pravidel: DOPLNIT
-- Datum ověření: DOPLNIT
-- Rozdíly oproti ostatním variantám: DOPLNIT
-
-Tento dokument je zatím pouze samostatnou osnovou pravidel, nikoliv úplnou specifikací. Žádný engine nesmí chybějící body domýšlet.
+## Zdroj
+- Česká Wikipedie – [Dáma (desková hra)](https://cs.wikipedia.org/wiki/Dáma_(desková_hra)), oddíl „Mezinárodní dáma“.
