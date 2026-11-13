@@ -21,12 +21,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Resolve FTP server to IPv4
+        id: ftp_ipv4
+        shell: bash
+        run: |
+          set -euo pipefail
+          FTP_IPV4="$(getent ahostsv4 ftp4.webzdarma.cz | awk 'NR == 1 { print $1 }')"
+          if [ -z "$FTP_IPV4" ]; then
+            echo "Could not resolve ftp4.webzdarma.cz to IPv4" >&2
+            exit 1
+          fi
+          echo "Using FTP IPv4 address: $FTP_IPV4"
+          echo "server=$FTP_IPV4" >> "$GITHUB_OUTPUT"
+
       - name: Sync changed files to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ steps.ftp_ipv4.outputs.server }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
           server-dir: /web/dama/
           local-dir: ./
           exclude: |
