@@ -6,6 +6,8 @@ export function mount({navigate,root}) {
     const opponent=root.querySelector('input[name="opponent"]:checked')?.value||'human';
     const difficulty=root.querySelector('input[name="difficulty"]:checked')?.value||'easy';
     const variant=root.querySelector('#game-variant')?.value||'czech-8';
+    const playableVariants=['classic','giveaway','czech-8','czech-zapletal'];
+    if(!playableVariants.includes(variant))return;
     navigate('game',{opponent,difficulty,variant});
   });
   update();
