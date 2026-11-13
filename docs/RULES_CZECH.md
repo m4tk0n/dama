@@ -1,26 +1,26 @@
-# Pravidla české dámy 8×8
+# Pravidla České dámy podle ČFD
 
-Tento dokument je jediným autoritativním zdrojem pravidel varianty Česká dáma podle ČFD. Ostatní varianty mají vlastní samostatné dokumenty pravidel a vlastní enginy; pravidla z tohoto souboru se na ně nepřenášejí. Produkční herní engine, lokální hra, budoucí AI a online hra musí používat stejná pravidla. Vykreslování desky nesmí pravidla samostatně implementovat.
+Tento dokument je autoritativním zdrojem pravidel varianty Česká dáma podle ČFD. Platí pro lokální hru, AI, ukládání i online hru. Vykreslování nesmí pravidla samostatně implementovat.
 
-## 1. Deska a výchozí postavení
-- Hraje se na desce 8×8.
-- Hraje se pouze na tmavých políčkách.
-- Každý hráč začíná s 12 obyčejnými kameny ve třech řadách na své straně.
-- Hráč 1 má bílé kameny, Hráč 2 černé.
-- V této implementaci začínají bílé nahoře a táhnou směrem dolů; černé začínají dole a táhnou směrem nahoru.
-- První tah má Hráč 1 (bílé). Hráči se dále střídají.
+## 1. Deska a počáteční postavení
+- Hraje se na šachovnici 8×8.
+- Hraje se pouze na černých polích.
+- Každý hráč začíná s 12 obyčejnými kameny ve třech řadách na protilehlých stranách šachovnice.
+- Kameny obou hráčů stojí na černých polích.
+- Konkrétní orientace barev a stran v aplikaci: bílé kameny jsou nahoře a táhnou dolů; černé kameny jsou dole a táhnou nahoru.
+- První tah má bílý hráč. Hráči se dále střídají.
 
-## 2. Obyčejný kámen
-- Pohybuje se o jedno volné diagonální políčko dopředu.
-- Nesmí se pohybovat dozadu.
+## 2. Pohyb obyčejného kamene
+- Obyčejný kámen se pohybuje diagonálně po černých polích pouze vpřed.
+- Při běžném tahu se posune o jedno volné políčko.
 - Nesmí vstoupit na obsazené políčko ani přeskočit vlastní kámen.
-- Při braní přeskočí sousední soupeřův kámen pouze dopředu a přistane na volném políčku bezprostředně za ním.
+- Při braní přeskočí sousední soupeřův kámen nebo dámu diagonálně vpřed a přistane na volném políčku bezprostředně za přeskočenou figurou.
 
-## 3. Dáma
-- Kámen se stane dámou po dokončení tahu, kterým dosáhne poslední řady soupeřovy strany.
-- Dáma se pohybuje po diagonále dopředu i dozadu o libovolný počet volných polí.
-- Při braní může přeskočit soupeřovu figuru na stejné diagonále, pokud je za ní alespoň jedno volné pole.
-- Po přeskočení může přistát na kterémkoliv volném políčku za přeskočenou figurou na stejné diagonále, dokud jí v cestě nestojí další figura nebo okraj desky.
+## 3. Proměna a pohyb dámy
+- Kámen, který dojde na poslední řadu šachovnice, se promění v dámu.
+- Dáma se pohybuje diagonálně dopředu i dozadu o libovolný počet volných polí.
+- Při braní může dáma přeskočit soupeřův kámen nebo dámu na stejné diagonále, pokud je za ní volné pole.
+- Po přeskočení může dáma přistát na kterémkoliv volném poli za přeskočenou figurou na stejné diagonále, dokud jí v cestě nestojí další figura nebo okraj desky.
 - Vlastní figury ani již přeskočené figury nesmí přeskočit.
 
 ## 4. Povinné a vícenásobné braní
@@ -29,29 +29,24 @@ Tento dokument je jediným autoritativním zdrojem pravidel varianty Česká dá
 - Pokud existuje více různých možností braní, hráč si může vybrat. Není povinné vybrat cestu s nejvyšším počtem braných figur.
 - Po prvním přeskočení musí stejná figura pokračovat v braní, pokud má další možnost.
 - Vícenásobné braní je jeden tah. Během něj se nesmí přejít na jinou vlastní figuru.
-- Stejnou soupeřovu figuru nelze přeskočit vícekrát v jednom tahu.
+- Přes jednu soupeřovu figuru nelze v rámci jednoho tahu skákat vícekrát.
 - Přeskočené soupeřovy figury zůstávají na desce jako překážky až do dokončení celé sekvence braní; potom se odstraní najednou.
 - Kámen, který během braní dosáhne poslední řady, se stane dámou až po dokončení celé sekvence. Zbytek tohoto tahu dokončuje jako obyčejný kámen.
 
 ## 5. Konec partie
-- Hráč vyhrává, pokud soupeř nemá žádnou figuru nebo nemá žádný legální tah.
-- Automatické rozpoznávání remízy zatím není implementováno. Remíza ani pravidla opakování pozic se nesmějí domýšlet v zobrazovací vrstvě; musí být doplněna jako samostatné pravidlo a testy.
+- Hráč, který je na tahu a nemůže provést legální tah, prohrál. To platí, pokud nemá žádné kameny nebo má všechny své kameny zablokované.
+- Partie končí remízou, pokud již teoreticky nelze při pozorné hře vzít soupeři žádný kámen ani dámu.
+- Další pravidla remízy nejsou v dodaném znění specifikována a nesmějí se domýšlet.
 
-## 6. Ovládání v aplikaci
-- Hráč klepne na vlastní figuru. Vybraná figura se vizuálně zvedne nad desku.
-- Aplikace zvýrazní pouze legální cílová políčka.
-- Hráč klepne na cílové políčko a figura se přesune.
-- Při vícenásobném braní zůstává vybraná stejná figura a aplikace nabídne pouze další legální skoky.
-- Po dokončení tahu se zobrazí další hráč na tahu.
-- Zobrazovací vrstva pouze předává požadavek na tah hernímu enginu a zobrazuje jeho výsledek. Sama nesmí rozhodovat o legálnosti tahu.
+## 6. Chybný tah
+- Pokud hráč zahraje tah v rozporu s pravidly, například opomene povinné braní, soupeř může požadovat opravu tahu.
+- Podrobnější postup opravy (časové a procesní podmínky) není v dodaném znění specifikován.
 
-## 7. Rozsah implementace
-- Tato pravidla platí pro českou dámu 8×8.
-- Mezinárodní dáma 10×10 má vlastní pravidla a nesmí používat pravidla 8×8.
-- AI, ukládání a online synchronizace nejsou součástí samotného enginu pravidel; jejich budoucí implementace musí používat tento engine a nesmí vytvářet vlastní kopii pravidel.
+## 7. Ovládání v aplikaci
+- Hráč vybere vlastní figuru; aplikace zvýrazní pouze legální cílová políčka.
+- Při vícenásobném braní zůstává vybraná stejná figura a aplikace nabídne pouze legální pokračování.
+- Zobrazovací vrstva pouze předává požadavek na tah enginu a zobrazuje jeho výsledek. Sama nesmí rozhodovat o legálnosti tahu.
 
-## 8. Podklady
+## 8. Zdroj
+- Text pravidel České dámy podle ČFD dodal uživatel v zadání projektu.
 - [Česká Wikipedie – Dáma (desková hra)](https://cs.wikipedia.org/wiki/Dáma_(desková_hra)), oddíl „Česká dáma podle pravidel České federace dámy“.
-- [VUT – práce popisující českou variantu dámy](https://dspace.vut.cz/bitstreams/364088fd-ae02-44bb-bdca-a1673741d763/download)
-- [Technická univerzita v Liberci – česká dáma podle pravidel České federace dámy](https://dspace.tul.cz/bitstreams/28113781-8209-4288-b1cc-ec32e3ecf083/download)
-- [Česká dáma – přehled pravidel braní](https://new.deskovehry.cz/index.php?title=%C4%8Cesk%C3%A1_d%C3%A1ma)
