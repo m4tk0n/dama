@@ -4,8 +4,9 @@ Tento dokument shrnuje uživatelem potvrzené požadavky. Stav implementace se e
 
 ## 1. První herní verze
 - První implementovanou variantou bude česká dáma na desce 8×8.
-- Při vytváření hry bude možné vybrat variantu; budoucí varianty zůstanou deaktivované, dokud nebudou implementované a otestované.
-- Později se počítá také s variantou 10×10 a dalšími variantami.
+- Při vytváření hry je dostupná česká dáma 8×8.
+- Mezinárodní dáma 10×10 je dočasně zpřístupněna pouze pro testování rozměrů a zobrazení desky. Její pravidla, herní logika a tahy zatím nejsou implementované; aplikace to musí v rozhraní jasně označit.
+- Ostatní budoucí varianty zůstávají deaktivované, dokud nebudou implementované a otestované.
 - První grafické zobrazení bude 2D; v budoucnu bude možné přepnout na 3D.
 
 ## 2. Obtížnost AI
