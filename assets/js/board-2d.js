@@ -37,11 +37,12 @@ export function renderGameBoard(container,state,selectedIndex=null,legalMoves=[]
  const targets=new Set(legalMoves.map(move=>move.to));
  const captured=new Set(state.pending?.captured||[]);
  const fragment=document.createDocumentFragment();
- container.style.gridTemplateColumns='repeat(8,minmax(0,1fr))';
- container.style.gridTemplateRows='repeat(8,minmax(0,1fr))';
- container.setAttribute('aria-label','Hrací deska 8 krát 8');
- for(let row=0;row<8;row++)for(let column=0;column<8;column++){
-  const index=row*8+column;
+ const size=state.size||8;
+ container.style.gridTemplateColumns='repeat('+size+',minmax(0,1fr))';
+ container.style.gridTemplateRows='repeat('+size+',minmax(0,1fr))';
+ container.setAttribute('aria-label','Hrací deska '+size+' krát '+size);
+ for(let row=0;row<size;row++)for(let column=0;column<size;column++){
+  const index=row*size+column;
   fragment.append(createCell(row,column,index,state.board[index],{
    interactive:true,selected:index===selectedIndex,target:targets.has(index),captured:captured.has(index)
   }));
