@@ -92,8 +92,8 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Změna:** Přidána první navigační kostra aplikace, obrazovka vytvoření místní hry, výběr české dámy 8×8 a tří úrovní AI, počáteční statické vykreslení desky 8×8 a oddělené lazy načítání 2D stylů a vykreslovače. Založena počáteční specifikace požadavků a pravidla CSS údržby.
 - **Důvod:** Zahájit implementaci po malých ověřitelných částech a současně udržet architekturu připravenou pro další varianty a 3D.
 - **Dotčené soubory:** `index.php`, `assets/css/app.css`, `assets/css/board-2d.css`, `assets/js/app.js`, `assets/js/board-2d.js`, `install/README.md`, `docs/REQUIREMENTS.md`, `docs/AI_WORK_INSTRUCTIONS.md`, `docs/ROADMAP.md`
-- **Ověření:** Zápisy souborů do `main` byly potvrzeny GitHub API. Automatické nasazení, PHP/JavaScript syntaktické kontroly a zobrazení na živém webu zatím nebyly ověřeny. Herní tahy, pravidla a AI zatím nejsou implementovány.
-- **Commity:** `cc36d2aae472b129c048e82f6e7eb8457faa9caf`, `906ae6223519d9561f92fdfe14529f83db33c467`, `fc368e4590eadf2829f4b85899981faec8973c8d`, `6f9ce1a48efca7241a979a28947267e6cfd595da`, `c7fb3a9fffda1c836a230695b4b5c673200e8bd6`, `abaac27ab7330c2a2a976c5cc305ae23f00564c9`, `63f77b122a8c22b05e46bb0334db9c85ae3c875a`
+- **Ověření:** GitHub API potvrdilo zápisy do `main`. Lokálně prošla kontrola syntaxe `php -l index.php`, `node --check assets/js/app.js` a `node --check assets/js/board-2d.js`. GitHub Actions: FTP synchronizace proběhla úspěšně, ale následný krok kontroly serverového diagnostického endpointu selhal; živé zobrazení proto není potvrzeno. Herní tahy, pravidla a AI zatím nejsou implementovány.
+- **Commity:** `cc36d2aae472b129c048e82f6e7eb8457faa9caf`, `906ae6223519d9561f92fdfe14529f83db33c467`, `fc368e4590eadf2829f4b85899981faec8973c8d`, `6f9ce1a48efca7241a979a28947267e6cfd595da`, `c7fb3a9fffda1c836a230695b4b5c673200e8bd6`, `abaac27ab7330c2a2a976c5cc305ae23f00564c9`, `63f77b122a8c22b05e46bb0334db9c85ae3c875a`, `dea4c452bb10807906b99787cbe75442ed819684`, `3ba913c672fe801f60af457a0f505cd70c2eebaa`
 
 ## 5. Roadmapa – plánované a rozpracované oblasti
 
@@ -133,7 +133,7 @@ Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v př
 4. Spustit relevantní testy a zaznamenat skutečný výsledek.
 5. Přidělit další projektovou verzi podle pravidel verzování.
 6. Zapsat verzi, popis, dotčené soubory, ověření a commit SHA do tohoto dokumentu.
-7. Teprve po ověření označit položku jako HOTOVO.
+7. Teprve po ověření označit jako HOTOVO.
 
 **Bez aktualizace tohoto dokumentu není významná změna projektu řádně zdokumentovaná.**
 
