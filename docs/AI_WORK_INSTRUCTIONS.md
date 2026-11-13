@@ -1,0 +1,132 @@
+# Závazné pracovní pokyny pro AI – projekt Dáma
+
+Tento dokument stanovuje, jak má AI postupovat při každé práci na projektu Dáma. Pokyny platí při pokračování v tomto chatu i při zahájení práce v novém chatu. Jsou závazné spolu s ostatní projektovou dokumentací.
+
+## 1. Hierarchie zdrojů
+
+Přednost mají v tomto pořadí:
+
+1. Výslovné aktuální zadání uživatele pro právě řešený úkol.
+2. Autoritativní pravidla a technická rozhodnutí uložená v dokumentaci projektu.
+3. Aktuální implementace v repozitáři na větvi `main`.
+4. Roadmapa a historie změn.
+
+Pokud si zadání, dokumentace a kód odporují, AI nesmí rozpor potichu vyřešit odhadem. Musí určit konkrétní rozpor, upozornit na něj a vyžádat si rozhodnutí, pokud jej nelze jednoznačně vyřešit z novějšího výslovného pokynu uživatele.
+
+## 2. Povinná příprava před prací
+
+Před každým novým úkolem, který se týká projektu:
+
+1. Ověřit, že pracuje v repozitáři `m4tk0n/dama` a na správné větvi.
+2. Načíst tento dokument `docs/AI_WORK_INSTRUCTIONS.md`.
+3. Načíst aktuální `docs/ROADMAP.md`.
+4. Podle úkolu načíst související dokumentaci, zejména:
+   - `docs/SERVER_ENVIRONMENT.md` při práci se serverem, PHP, databází, konfigurací nebo nasazením.
+   - `docs/AI_DEVELOPMENT_STRUCTURE.md` při práci s AI, trénováním, vahami, modely nebo daty.
+5. Zkontrolovat aktuální stav dotčených souborů a související implementace na `main`. Nespoléhat na staré výpisy, předchozí odpovědi ani předpoklad, že se repozitář nezměnil.
+6. Zkontrolovat relevantní historii commitů nebo testů, pokud je to potřebné pro bezpečné pokračování.
+
+Pokud některý dokument nebo soubor není dostupný, AI to musí uvést a nesmí předstírat, že jej načetla.
+
+## 3. Plánování a rozsah práce
+
+- Nejprve určit, co přesně má být výsledkem úkolu.
+- Rozdělit větší práci na malé, ověřitelné kroky.
+- Zachovat stávající funkční části a architekturu, pokud uživatel výslovně neschválí jejich změnu.
+- Neprovádět nesouvisející úpravy, hromadné přepisy ani kosmetické změny bez důvodu.
+- Nezakládat duplicitní zdroje pravidel, konfigurace ani logiky.
+- Pokud existuje autoritativní dokument nebo modul, rozšiřovat jej místo vytváření druhé konkurenční verze.
+- Při nejasnosti, která může změnit pravidla hry, architekturu, data nebo chování aplikace, nejprve vyžádat rozhodnutí uživatele.
+
+## 4. Implementace
+
+- Pokud uživatel žádá o provedení změny a dostupné nástroje to umožňují, změnu skutečně provést v repozitáři; neomezit odpověď na návrh nebo ukázkový kód.
+- Před úpravou souboru načíst jeho aktuální obsah a při aktualizaci použít aktuální SHA.
+- Měnit pouze nezbytné části a zachovat nesouvisející obsah.
+- Dodržovat kompatibilitu s ověřeným produkčním prostředím uvedeným v `SERVER_ENVIRONMENT.md`.
+- Nikdy nepoužívat `putenv()`.
+- Nikdy nezveřejnit, nevypsat, necommitovat ani nepřepsat produkční tajemství nebo obsah `.env`.
+- Při nasazení vždy zachovat pravidla ochrany a vyloučení `.env`.
+- Neodstraňovat soubory ani funkce bez jasného důvodu a opory v zadání.
+- Nevkládat do projektu diagnostický nebo testovací kód, který by se spouštěl běžným uživatelům, pokud to není výslovně zamýšleno.
+- U změn AI respektovat oddělení vývojového/trénovacího prostředí a produkční AI podle `AI_DEVELOPMENT_STRUCTURE.md`.
+
+## 5. Pravidla a architektura hry
+
+- Pravidla hry musí mít jeden autoritativní zdroj.
+- Herní logika, ověřování legálních tahů a stav partie musí být odděleny od vykreslování a uživatelského rozhraní.
+- Různá zobrazení hry nesmějí obsahovat vlastní kopie pravidel ani měnit výsledek herní logiky.
+- AI, lokální hra i případná online hra musí používat stejná autoritativní pravidla a stejný výpočet legálních tahů.
+- Každá změna pravidel musí být promítnuta do dokumentace, implementace a odpovídajících testů.
+- Pokud pravidla nejsou jednoznačně zdokumentována, AI si je nesmí domýšlet.
+
+## 6. Testování a ověřování
+
+- Po každé změně spustit nejvhodnější dostupné testy, kontroly syntaxe nebo CI workflow.
+- Při změně herních pravidel nebo logiky ověřit také související hraniční případy a regrese.
+- Při opravě chyby ověřit původní chybový scénář, nejen to, že kód projde kompilací nebo syntaxí.
+- Pokud testy selžou, zjistit příčinu a opravit ji, pokud to spadá do rozsahu úkolu.
+- Pokud test nelze spustit, výslovně uvést proč a co nebylo ověřeno.
+- Rozlišovat mezi stavem „změna zapsána“, „test prošel“, „nasazení proběhlo“ a „funkčnost ověřena na živém webu“. Tyto stavy nejsou zaměnitelné.
+- Nikdy neoznačit neověřenou změnu jako HOTOVO.
+
+## 7. GitHub, commity a nasazení
+
+- Preferované cílové umístění dokončených změn je větev `main`, protože je napojena na automatické nasazení.
+- Před zápisem ověřit aktuální stav větve a souborů.
+- Používat výstižné commit zprávy.
+- Po commitu ověřit výsledek a podle potřeby stav GitHub Actions.
+- Pokud zápis do `main` není bezpečný nebo jej nelze provést, neprovádět jej naslepo. Uvést překážku a navrhnout bezpečný postup.
+- Úspěšný commit sám o sobě nepotvrzuje úspěšné nasazení.
+- O živém nasazení nebo funkčnosti na serveru tvrdit pouze to, co bylo skutečně ověřeno.
+
+## 8. Roadmapa a projektové verzování
+
+Při každé významné změně:
+
+1. Zkontrolovat `docs/ROADMAP.md`.
+2. Podle rozsahu určit další projektovou verzi ve formátu `MAJOR.MINOR.PATCH`; nikdy nepoužít již přidělené číslo.
+3. Zapsat datum, název, důvod, popis, dotčené soubory, testy a jejich skutečné výsledky.
+4. Doplnit commit SHA, jakmile je znám.
+5. Aktualizovat stav příslušné položky roadmapy.
+6. Označit HOTOVO pouze tehdy, když je změna skutečně ověřena.
+
+Drobné změny bez významného dopadu nemusí mít samostatnou verzi. Významné změny kódu nebo dokumentace musí být dohledatelné. Starší záznamy se nemažou; opravy se zapisují novým záznamem.
+
+## 9. Práce v novém chatu a předání
+
+Na začátku práce v novém chatu AI nesmí předpokládat, že si pamatuje poslední stav projektu. Musí znovu načíst tento dokument, roadmapu, související dokumentaci a aktuální stav repozitáře.
+
+Při předání práce musí stručně uvést:
+- co bylo změněno,
+- které soubory byly dotčeny,
+- jaké testy proběhly a s jakým výsledkem,
+- zda byl vytvořen commit a jeho SHA,
+- zda bylo ověřeno nasazení,
+- co zůstává nedokončené nebo neověřené.
+
+## 10. Komunikace s uživatelem
+
+- Odpovídat přímo a věcně.
+- Nezaměňovat plán, návrh, provedenou změnu a ověřený výsledek.
+- Neopakovat stále návrhy, pokud uživatel žádá skutečnou implementaci a nástroje ji umožňují.
+- Neprovádět zásadní rozhodnutí za uživatele, pokud zadání připouští více odlišných řešení.
+- Nezahlcovat uživatele dlouhými průběžnými výpisy; předávat malé a konkrétní výsledky.
+- Přiznat omezení nástrojů nebo chybějící přístup. Nikdy netvrdit, že byla provedena operace, která ve skutečnosti neproběhla.
+
+## 11. Povinná kontrola před dokončením úkolu
+
+Před oznámením dokončení ověřit:
+
+- [ ] Změna odpovídá aktuálnímu zadání.
+- [ ] Byla respektována závazná dokumentace.
+- [ ] Nebyly nechtěně změněny nesouvisející funkce.
+- [ ] Byly spuštěny relevantní testy nebo je popsáno, proč to nebylo možné.
+- [ ] Roadmapa a projektová verze byly aktualizovány, pokud to rozsah vyžaduje.
+- [ ] Commit a jeho SHA jsou ověřené, pokud byl vytvořen.
+- [ ] Stav nasazení je popsán pravdivě.
+- [ ] V odpovědi jsou jasně odděleny hotové, neověřené a zbývající části.
+
+---
+
+**Základní pravidlo:** AI má na projektu Dáma postupovat podle této dokumentace, nejprve ověřovat skutečný stav, následně provádět požadované změny, testovat je a zaznamenávat. Nesmí vydávat domněnky za fakta ani tvrdit, že něco udělala, pokud to neprovedla.
