@@ -1,28 +1,19 @@
 # Pravidla – Anglická dáma
 
-**STAV: NEÚPLNÉ – varianta zatím není schválena ani hratelná.**
+**Zdrojový rozsah:** článek české Wikipedie uvádí odlišnosti anglické dámy (draughts/checkers) oproti české dámě. Následující body jsou pouze ty, které článek výslovně uvádí.
 
-Článek uvádí odlišnosti: proměněný kámen je king, pohybuje se o jedno pole všemi směry a při možnosti braní kamenem i kingem si hráč volí. Úplné počáteční rozestavení, braní a remízy je nutné ověřit z autoritativních pravidel.
+## 1. Proměněná figura – king
+- Zdvojený kámen, který dosáhne konce hracího pole, se nenazývá dáma, ale král (king).
+- King se může pohybovat všemi směry jako dáma, avšak pouze o jedno pole.
 
-## Povinné ověření před implementací
-- Přesný rozměr a tvar desky, aktivní pole a orientace.
-- Počet hráčů, počet kamenů a kompletní počáteční rozestavení.
-- Kdo začíná a jak se střídají tahy.
-- Pohyb obyčejného kamene a podmínky proměny.
-- Pohyb dámy/krále a jeho braní.
-- Povinné braní, priorita braní a volba mezi více možnostmi.
-- Vícenásobné braní, pořadí a odstraňování braných kamenů.
-- Podmínky vítězství, prohry a remízy.
-- Autoritativní zdroje pravidel a jejich případné rozpory.
+## 2. Volba figury při braní
+- Pokud hráč může skákat králem i obyčejným kamenem, může si vybrat, kterou figurou skočí.
+- Na rozdíl od české dámy tedy podle tohoto popisu nemá king při braní automatickou přednost.
 
-## Implementace
-- Vlastní počáteční rozestavení.
-- Vlastní herní engine; nepoužívat pravidla ani engine jiné varianty jako náhradu.
-- Vlastní automatické testy všech pravidel a hraničních situací.
-- Vlastní strategické vyhodnocování AI.
+## 3. Další pravidla
+- Článek popisuje variantu jako odlišnou od české dámy, ale neuvádí úplný výčet společných pravidel ani kompletní počáteční rozestavení.
+- Přesné rozměry a aktivní pole, počet kamenů, pohyb obyčejného kamene, pravidla vícenásobného braní a podmínky remízy je nutné před implementací ověřit z úplných pravidel anglických draughts/checkers.
+- Článek uvádí, že při bezchybné hře obou hráčů končí hra remízou.
 
-## Zdroje
-- Přehled názvu varianty: https://cs.wikipedia.org/wiki/Dáma_(desková_hra)
-- Autoritativní úplný zdroj pravidel: DOPLNIT
-
-Dokud nejsou všechny zásadní body ověřené, nesmí být varianta spuštěna jako hratelná partie.
+## Zdroj
+- Česká Wikipedie – [Dáma (desková hra)](https://cs.wikipedia.org/wiki/Dáma_(desková_hra)), oddíl „Anglická dáma“.
