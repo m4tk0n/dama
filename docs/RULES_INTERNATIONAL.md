@@ -1,6 +1,6 @@
 # Pravidla Mezinárodní dámy
 
-<badge>NEÚPLNÉ – zatím neschváleno</badge>
+**STAV: NEÚPLNÉ – zatím neschváleno**
 
 Tento soubor je vyhrazen výhradně pravidlům Mezinárodní dámy. Nesmí používat česká pravidla ani se odvozovat pouze z rozměru desky 10×10.
 
