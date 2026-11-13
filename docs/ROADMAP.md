@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.003**
+**Aktuální projektová verze: 01.00.004**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -101,7 +101,7 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 
 | ID | Oblast | Cíl / další postup | Stav |
 |---|---|---|---|
-| R-001 | Základ aplikace | Vstupní bod a první navigační kostra jsou založeny; doplnit konfiguraci, společné komponenty a bezpečné routování | ROZPRACOVÁNO |
+| R-001 | Základ aplikace | Základní layout je oddělen; každá další obrazovka se načítá z vlastního HTML a JS modulu až při otevření. Doplnit konfiguraci a bezpečné routování | ROZPRACOVÁNO |
 | R-002 | Databáze | Navrhnout schéma, migrace a bezpečné připojení přes serverový `.env`; prefix načítat z `table_prefix` | PLÁN |
 | R-003 | Pravidla Dámy | Sepsat a zavést jeden autoritativní zdroj úplných pravidel české dámy 8×8 | PLÁN |
 | R-004 | Herní logika | Oddělit pravidla a výpočty tahů od vykreslování herní desky | PLÁN |
@@ -116,15 +116,24 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 
 Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v případě chyby se přidá opravný záznam.
 
+### 01.00.004 – Skutečné oddělení obrazovek a načítání na vyžádání
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** `index.php` nyní obsahuje pouze základní layout a úvodní obrazovku. Ostatní obrazovky mají samostatné HTML soubory v `pages/` a vlastní JS moduly v `assets/js/screens/`. Malý `app.js` stáhne HTML a importuje modul až při otevření obrazovky; opakované otevření může využít cache. Hra načítá 2D CSS a renderer až při otevření herní obrazovky. Verze odložených souborů se odvozují z jejich vlastního `filemtime()`.
+- **Důvod:** Zabránit stahování a parsování obsahu a logiky všech obrazovek při prvním otevření aplikace. Zachovat přehledné oddělení obrazovek a připravit architekturu pro pozdější samostatné herní moduly.
+- **Dotčené soubory:** `index.php`, `assets/js/app.js`, `assets/css/app.css`, `assets/js/screens/*.js`, `pages/*.html`, `.github/workflows/deploy.yml`, `docs/AI_WORK_INSTRUCTIONS.md`, `docs/REQUIREMENTS.md`, `docs/ROADMAP.md`
+- **Commity:** `ffe574508f6c3d142a0fba2d22209d34d72f5acc`, `4c5dcb3e5bf415f2624ee5bd788a1c7eac82fecc`, `b087a63552584f684d714a70a7e4cf61c6bbda75`, `51c84c40f7502f5a87fc37da54775069335f405d`, `441a069d0d838fe4de4c57acd03cab7ba48e05b2`, `301f46dd6d6cca78d9afc013387e895f06112cc0`, `593eda41f5b637f6eed4f840517b57724850c7fe`, `49d5bf2796f6637272c86f26e667f0f39071c498`, `af45a485cfb3e51e7ab19404dc5706751e99bb3d`, `a7615af97bc94e7aeed3f2341562e73635d37ecc`, `d8c90f380aeb6da32ba222c39d059bca40f98542`, `1fdcbe6b8538684458755652175fecfa61183b81`, `b85db3401a354ba3f835571a48e6b0620a2270e3`, `c05e6abc822a7d8d4e2e88df48fa612b5e4d1a44`, `22cd498406eef93dae83a2d996277d5c9544e347`, `01a53372d8fc33b1509a1d9ed41eb9af72c8e60a`, `faf1faeff16724d193a0a26473c226613ecd7251`, `eb19db7055e817c4e541462d4db97ddf4e2ce943`, `e8c69a6abda058275035d6d557ced4bd26c90849`
+- **Ověření:** Čeká na automatickou syntaktickou kontrolu všech JS modulů, PHP lint, nasazení a HTTP health check v GitHub Actions. Zatím není označeno jako HOTOVO.
+
 ### 01.00.003 – Automatické verzování assetů podle filemtime
 
 - **Datum:** 2026-11-13
 - **Stav:** HOTOVO
-- **Změna:** Nahrazeno pevné \`$assetVersion\` verzováním podle času poslední změny konkrétního souboru pomocí PHP \`filemtime()\`. Verze se používá pro hlavní CSS a JavaScript i pro odloženě načítané CSS a ES modul 2D desky.
-- **Důvod:** Zajistit automatické obnovení cache pouze u změněných assetů a zabránit používání staré verze dynamicky importovaného modulu.
-- **Dotčené soubory:** \`index.php\`, \`assets/js/app.js\`, \`docs/ROADMAP.md\`
-- **Commity:** \`847100466e8fd5ca6a05f0da3584e81e3aaa9b9c\` (\`index.php\`), \`1152714277f674791722e2ae8285db2267a9fd47\` (\`assets/js/app.js\`)
-- **Ověření:** Zápisy do \`main\` potvrzeny. Kontrola PHP/JS syntaxe, GitHub Actions a živého načtení čeká na ověření.
+- **Změna:** Verzování hlavního CSS a JavaScriptu i odloženě načítaných souborů podle času poslední změny konkrétního souboru pomocí PHP `filemtime()`.
+- **Dotčené soubory:** `index.php`, `assets/js/app.js`
+- **Commity:** `847100466e8fd5ca6a05f0da3584e81e3aaa9b9c`, `1152714277f674791722e2ae8285db2267a9fd47`
+- **Ověření:** FTP synchronizace i krok `Verify deployed application` proběhly úspěšně v GitHub Actions run `43406664668`.
 
 ### 01.00.000 – Zavedení roadmapy a verzování
 
