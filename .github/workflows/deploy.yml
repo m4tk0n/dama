@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: FTP deploy and server diagnostics
+    name: FTP deploy and HTTP health check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -54,24 +54,21 @@ jobs:
             .env
             .env.*
 
-      - name: Read PHP and MySQL versions from live server
+      - name: Verify deployed application
         shell: bash
         run: |
           set -euo pipefail
-          URL="https://7x.wz.cz/dama/server-info.php"
-          HTTP_STATUS="$(curl --silent --show-error --location --max-time 30 --output server-info-result.txt --write-out '%{http_code}' "$URL")"
+          URL="https://7x.wz.cz/dama/"
+          HTTP_STATUS="$(curl --silent --show-error --location --max-time 30 --output deployed-page.html --write-out '%{http_code}' "$URL")"
           echo "HTTP status: $HTTP_STATUS"
           if [ "$HTTP_STATUS" != "200" ]; then
-            cat server-info-result.txt
+            cat deployed-page.html
             exit 1
           fi
-          echo '### Live server PHP/MySQL diagnostics' >> "$GITHUB_STEP_SUMMARY"
-          cat server-info-result.txt | tee -a "$GITHUB_STEP_SUMMARY"
-
-      - name: Save diagnostics as workflow artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dama-server-info
-          path: server-info-result.txt
-          if-no-files-found: error
-          retention-days: 7
+          if ! grep -qi '<title>Dáma</title>' deployed-page.html; then
+            echo "The deployed response does not contain the expected Dáma page title." >&2
+            exit 1
+          fi
+          echo "### Deployment health check" >> "$GITHUB_STEP_SUMMARY"
+          echo "- HTTP status: $HTTP_STATUS" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Page title: Dáma" >> "$GITHUB_STEP_SUMMARY"
