@@ -81,7 +81,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Dotčené soubory:** `docs/AI_WORK_INSTRUCTIONS.md`, `docs/ROADMAP.md`
 - **Ověření:** Oba dokumenty uloženy do větve `main`; obsah nového souboru byl vytvořen a commit potvrzen. Funkčnost aplikace se touto dokumentační změnou nemění.
 - **Commit AI_WORK_INSTRUCTIONS.md:** `71f40045a980741e70f5a6be68ead34ad0042623`
-- **Commit ROADMAP.md:** bude doplněn po uložení této aktualizace.
+- **Commit ROADMAP.md:** viz historie GitHubu – commit, kterým byl tento záznam uložen.
 
 ## 5. Roadmapa – plánované a rozpracované oblasti
 
