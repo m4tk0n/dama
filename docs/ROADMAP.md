@@ -57,6 +57,8 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
+**Aktuální projektová verze: 01.00.001**
+
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
 
@@ -69,6 +71,17 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Ověření:** Dokument uložen do GitHub repozitáře.
 
 </details>
+
+### 01.00.001 – Zavedení závazných pracovních pokynů pro AI
+
+- **Datum:** 2026-11-13
+- **Stav:** HOTOVO
+- **Změna:** Vytvořen dokument `docs/AI_WORK_INSTRUCTIONS.md`, který stanovuje povinný postup AI při přípravě, implementaci, testování, verzování, nasazování a předávání práce.
+- **Důvod:** Zajistit jednotný a opakovatelný pracovní postup při každém pokračování projektu, včetně nových chatů.
+- **Dotčené soubory:** `docs/AI_WORK_INSTRUCTIONS.md`, `docs/ROADMAP.md`
+- **Ověření:** Oba dokumenty uloženy do větve `main`; obsah nového souboru byl vytvořen a commit potvrzen. Funkčnost aplikace se touto dokumentační změnou nemění.
+- **Commit AI_WORK_INSTRUCTIONS.md:** `71f40045a980741e70f5a6be68ead34ad0042623`
+- **Commit ROADMAP.md:** bude doplněn po uložení této aktualizace.
 
 ## 5. Roadmapa – plánované a rozpracované oblasti
 
@@ -114,5 +127,6 @@ Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v př
 
 ## 8. Související dokumentace
 
+- [Závazné pracovní pokyny pro AI](AI_WORK_INSTRUCTIONS.md)
 - [Prostředí produkčního serveru](SERVER_ENVIRONMENT.md)
 - [Struktura vývoje AI](AI_DEVELOPMENT_STRUCTURE.md)
