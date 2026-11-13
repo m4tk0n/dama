@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.011**
+**Aktuální projektová verze: 01.00.012**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -117,6 +117,18 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Ověření:** Zápisy dokumentace potvrzeny odpověďmi GitHub API. Automatické testy a nasazení zatím nebyly ověřeny.
 - **Commity pravidel:** dcefc65a9c50345aff71e5f38c6cff38ae59bf50, ffd70078f22a47d81c3d416f68deba8dac8c4e9c
 - **Commit registru:** aac4864dcf9b086bc6e3055a84b6391f957f024f
+
+### 01.00.012 – Upřesnění pravidel České dámy a varianty dle Zapletala
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO – dokumentace upravena, herní enginy zatím beze změny
+- **Změna:** Pravidla České dámy podle ČFD byla sjednocena s dodaným zněním: 12 kamenů ve třech řadách, pohyb kamenů pouze vpřed, létající dáma, povinné braní, přednost dámy, volba mezi variantami braní, dokončení celé série a odstranění přeskočených figur až po jejím skončení, zákaz opakovaného přeskočení stejné figury, prohra při nemožnosti tahu, uvedená remíza a možnost požadovat opravu chybného tahu. Pravidla České dámy dle Zapletala byla doplněna o 8 kamenů ve dvou řadách a začátek černého; pravidla pohybu jsou odvozena z ČFD podle výslovného sdělení zdroje.
+- **Důvod:** Zapsat uživatelem dodaná pravidla jako podklad pro budoucí samostatné enginy a odstranit neurčitost počátečního rozestavení Zapletalovy varianty.
+- **Dotčené soubory:** docs/RULES_CZECH.md, docs/RULES_CZECH_ZAPLETAL.md, docs/GAME_VARIANTS.md, docs/ROADMAP.md
+- **Omezení:** Zdroj u Zapletalovy varianty výslovně potvrzuje shodu pravidel pohybu, nikoli samostatně všechny podmínky konce partie, remízy a opravy chybného tahu. Ty zůstávají označeny jako neověřené. Aplikační enginy a testy nebyly změněny.
+- **Ověření:** Zápisy pravidel a registru potvrzeny GitHub API. Automatické testy a nasazení zatím nebyly ověřeny.
+- **Commity pravidel:** 140baa7b7b29a98784b601bf8d8572b3a12984b9, 99970d450a82c7ca79fd4abeeb7339712e6ae95b
+- **Commit registru:** e3630f1ca8f5310ddfecaccfb3d68b04fe98bec8
 
 ## 5. Roadmapa – plánované a rozpracované oblasti
 
