@@ -1,4 +1,4 @@
-import * as setup from './setup.js';
+import * as setup from './setup.js?v=1';
 const SIZE=8,DIRECTIONS=[[-1,-1],[-1,1],[1,-1],[1,1]];
 const inside=(r,c)=>r>=0&&r<SIZE&&c>=0&&c<SIZE;
 const at=(r,c)=>r*SIZE+c,coords=i=>[Math.floor(i/SIZE),i%SIZE];
