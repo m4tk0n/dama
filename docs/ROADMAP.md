@@ -57,7 +57,16 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.018**
+### 01.00.019 – Vlastní výběr variant a jednotné písmo 10 px
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Nativní systémový seznam variant byl nahrazen vlastním přístupným rozbalovacím seznamem, který zachovává skupiny, pořadí i deaktivované varianty. Velikost písma v celé aplikaci byla sjednocena na 10 px.
+- **Důvod:** Umožnit kontrolu velikosti textu i v rozbaleném seznamu na mobilních zařízeních a sjednotit typografii napříč obrazovkami.
+- **Dotčené soubory:** `assets/css/app.css`, `assets/js/screens/create.js`, `docs/ROADMAP.md`
+- **Ověření:** Čeká na syntaktickou a funkční kontrolu; živé nasazení zatím nepotvrzeno.
+
+**Aktuální projektová verze: 01.00.019**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
