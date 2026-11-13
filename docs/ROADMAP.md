@@ -98,7 +98,7 @@ Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v př
 - **Změna:** Vytvořena centrální roadmapa a pravidla verzování projektu.
 - **Dotčené soubory:** `docs/ROADMAP.md`
 - **Ověření:** Dokument vytvořen v repozitáři.
-- **Commit:** doplnit po vytvoření commitu.
+- **Commit:** viz historie GitHubu – commit, kterým byl tento dokument založen.
 
 ## 7. Povinný pracovní postup při změně projektu
 
