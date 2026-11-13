@@ -27,7 +27,7 @@ jobs:
           set -euo pipefail
           php -l index.php
           while IFS= read -r -d '' file; do
-            node --experimental-default-type=module --check "$file"
+            node --input-type=module --check < "$file"
           done < <(find assets/js -type f -name '*.js' -print0)
           for file in pages/*.html; do
             test -s "$file"
