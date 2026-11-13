@@ -3,11 +3,12 @@
 Tento dokument shrnuje uživatelem potvrzené požadavky. Stav implementace se eviduje v `ROADMAP.md`; uvedení požadavku zde neznamená, že je hotový.
 
 ## 1. První herní verze
-- Výběr místní hry obsahuje všech 16 pojmenovaných variant uvedených v článku Wikipedie „Dáma (desková hra)“: Klasická, Žravá, Česká podle ČFD, Česká dle Zapletala, Anglická, Mezinárodní, Brazilská, Španělská, Turecká (Keny), Rohová, Dvacet proti deseti, Středověká bitva, Jezdecká, Dám, Kanadská a Dvojitá dáma.
-- Každá položka má vlastní stabilní ID. Každá varianta bude skutečně hratelná až po dokončení a otestování vlastních pravidel, rozestavení a enginu.
-- Česká dáma podle ČFD 8×8 je současná implementovaná varianta.
-- Mezinárodní dáma 10×10 zůstává pouze vizuálním testovacím náhledem; nesmí používat česká pravidla ani předstírat funkční hru.
-- Ostatní varianty jsou viditelné a volitelné ve výběru, ale herní obrazovka musí jasně oznámit, že jejich engine ještě není implementován. Nesmí je tiše spustit s pravidly české dámy.
+- Projekt eviduje všech 16 pojmenovaných variant uvedených v článku Wikipedie „Dáma (desková hra)“ v `docs/GAME_VARIANTS.md`: Klasická, Žravá, Česká podle ČFD, Česká dle Zapletala, Anglická, Mezinárodní, Brazilská, Španělská, Turecká (Keny), Rohová, Dvacet proti deseti, Středověká bitva, Jezdecká, Dám, Kanadská a Dvojitá dáma.
+- Ve výběru nové hry jsou aktivní pouze čtyři varianty s vlastním enginem: Klasická, Žravá, Česká podle ČFD a Česká dle Zapletala.
+- Zbývajících 12 variant je ve výběru viditelných, ale deaktivovaných (`disabled`); uživatel je nemůže zvolit. Stejný seznam musí kontrolovat také logika vytvoření hry, aby nešlo deaktivovanou variantu spustit předáním jejího ID.
+- Deaktivovaná varianta se znovu aktivuje až po dokončení a otestování vlastních pravidel, rozestavení a enginu.
+- Mezinárodní dáma 10×10 má pouze technický vizuální náhled; ten není dostupný jako hratelná volba.
+- Žádná neimplementovaná varianta nesmí být tiše nahrazena pravidly nebo enginem jiné varianty.
 - První grafické zobrazení bude 2D; v budoucnu bude možné přepnout na 3D.
 
 ## 2. Obtížnost AI
