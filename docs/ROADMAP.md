@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.013**
+**Aktuální projektová verze: 01.00.014**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -117,6 +117,17 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Ověření:** Zápisy dokumentace potvrzeny odpověďmi GitHub API. Automatické testy a nasazení zatím nebyly ověřeny.
 - **Commity pravidel:** dcefc65a9c50345aff71e5f38c6cff38ae59bf50, ffd70078f22a47d81c3d416f68deba8dac8c4e9c
 - **Commit registru:** aac4864dcf9b086bc6e3055a84b6391f957f024f
+
+### 01.00.014 – Upřesnění směru braní Klasické dámy
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO – pravidlo zapsáno a testy přidány; automatické ověření čeká
+- **Změna:** Výslovně potvrzeno, že obyčejný kámen při braní skáče pouze vpřed, a to i během vícenásobného braní. Dáma smí při braní skákat vpřed i vzad po diagonále na libovolnou vzdálenost. Upřesnění bylo zapsáno do autoritativních pravidel Klasické dámy a doplněno regresními testy pro zákaz zpětného braní pešákem, zákaz změny směru během vícenásobného braní a obousměrné braní dámou.
+- **Důvod:** Odstranit nejasnost pravidel a zajistit, aby engine odpovídal výslovnému rozhodnutí uživatele.
+- **Dotčené soubory:** `docs/RULES_CLASSIC.md`, `tests/variant-engines.test.mjs`.
+- **Implementace enginu:** Stávající výpočet enginu již omezoval braní obyčejného kamene na směr vpřed; jeho pravidlový kód proto nebylo nutné měnit. Byly doplněny testy, které toto chování ověřují.
+- **Ověření:** Zápisy do `main` potvrzeny GitHub API. Automatické testy a nasazení čekají na GitHub Actions.
+- **Commity:** pravidla `25a9ea0057eb1cd318ae41ee8eb293134d1d1374`, testy `03516b8a5e1b8abe3db9977d9f09f986a36a852d`.
 
 ### 01.00.013 – První samostatné herní enginy variant
 
