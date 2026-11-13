@@ -21,7 +21,7 @@ select{width:100%;min-height:3rem;padding:.65rem .8rem;border:1px solid var(--co
 .custom-select-option[aria-selected="true"]{background:var(--color-panel-soft);color:var(--color-accent)}
 .custom-select-option:disabled{opacity:.38;cursor:not-allowed}
 .choice-row{display:flex;align-items:center;gap:.65rem;min-height:2.5rem}.choice-row input{width:1.1rem;height:1.1rem;accent-color:var(--color-accent)}
-.status-label,.mode-label{display:inline-block;padding:.35rem .65rem;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted);font-size:.78rem}.game-header{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.5rem}.game-header .back-button{grid-column:auto;justify-self:auto;margin:0.game-header h1{font-size:1.45rem}.mode-label{justify-self:end}
+.status-label,.mode-label{display:inline-block;padding:.35rem .65rem;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted);font-size:.78rem}.game-header{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.5rem}.game-header h1{font-size:1.45rem}.mode-label{justify-self:end}
 .board-wrap{width:min(100%,560px);margin:1.5rem auto 0}.board-caption{max-width:34rem;margin:1rem auto}.app-footer{display:flex;justify-content:space-between;gap:1rem;padding-block:1rem;border-top:1px solid rgb(255 255 255 / 9%);color:var(--color-muted);font-size:.75rem}
 .modal{width:min(calc(100% - 2rem),380px);padding:1.5rem;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-panel);color:var(--color-text)}.modal::backdrop{background:rgb(0 0 0 / 65%)}.modal h2{margin-top:0}
 @media(max-height:680px){.home-content{margin-top:0}.screen{padding-block:1rem}.main-menu{gap:.5rem}.menu-button{min-height:2.75rem}}
