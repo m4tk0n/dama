@@ -10,8 +10,8 @@ Seznam vychází z pojmenovaných variant uvedených v českém článku Wikiped
 |---|---|---|---|
 | classic | Klasická dáma | docs/RULES_CLASSIC.md | Upřesněná pravidla podle dodaného znění; začínající hráč a některé procedurální detaily zůstávají neurčené |
 | giveaway | Žravá dáma | docs/RULES_GIVEAWAY.md | Přebírá pravidla Klasické dámy; obrácená je pouze podmínka vítězství |
-| czech-8 | Česká dáma podle ČFD | docs/RULES_CZECH.md | Pravidla projektu a zdroj Wikipedie zaznamenány; engine 8×8 |
-| czech-zapletal | Česká dáma dle Zapletala | docs/RULES_CZECH_ZAPLETAL.md | Stručný popis z Wikipedie přenesen; rozestavení k upřesnění |
+| czech-8 | Česká dáma podle ČFD | docs/RULES_CZECH.md | Pravidla upřesněna podle dodaného znění; engine 8×8 |
+| czech-zapletal | Česká dáma dle Zapletala | docs/RULES_CZECH_ZAPLETAL.md | 8 kamenů ve dvou řadách, začíná černý; pohybová pravidla shodná s ČFD, konec partie k potvrzení |
 | english | Anglická dáma | docs/RULES_ENGLISH.md | Odlišnosti z Wikipedie přeneseny; úplná pravidla k doplnění |
 | international-10 | Mezinárodní dáma | docs/RULES_INTERNATIONAL.md | Odlišnosti z Wikipedie přeneseny; pouze vizuální náhled 10×10 |
 | brazilian | Brazilská dáma | docs/RULES_BRAZILIAN.md | Odlišnosti z Wikipedie přeneseny; úplná pravidla k doplnění |
