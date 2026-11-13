@@ -22,7 +22,7 @@ Hra proti počítači nabídne tři úrovně: Lehká, Střední a Těžká.
 - Stejný princip střídmého načítání a odstraňování duplicit platí pro JavaScript a PHP.
 
 ## 4. Architektura hry
-- Herní pravidla a stav partie mají jeden autoritativní zdroj.
+- Herní pravidla a stav partie mají jeden autoritativní zdroj v `docs/RULES_CZECH.md` a `assets/js/game-engine.js`.
 - Herní logika nesmí být součástí vykreslování.
 - 2D a 3D jsou dvě zobrazení stejného herního stavu.
 - Lokální hra, AI a budoucí online hra musí používat stejný herní engine a pravidla.
@@ -81,7 +81,7 @@ Moje hry budou dostupné přihlášenému uživateli a mají zahrnovat jeho roze
 - Odloženě načítané soubory používají vlastní verzi odvozenou z `filemtime()`.
 
 ## 12. Otevřené technické otázky
-- Přesná úplná pravidla české dámy, včetně povinnosti braní, směru braní, volby mezi více braními, proměny na dámu a ukončení partie. Před implementací enginu musí vzniknout samostatný autoritativní dokument pravidel.
+- Pravidla remízy a opakování pozic české dámy – automatické rozpoznávání remízy zatím není implementováno.
 - Přesné názvy databázových proměnných v existujícím `.env`, kromě potvrzeného `table_prefix`.
 - Konečné databázové schéma a způsob migrací.
 - Konkrétní mechanismus synchronizace online her a časové limity neaktivních partií.
