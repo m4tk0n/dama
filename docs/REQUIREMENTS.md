@@ -71,8 +71,8 @@ Moje hry budou dostupné přihlášenému uživateli a mají zahrnovat jeho roze
 
 ## 11. Oddělení obrazovek a lazy loading
 
-- `index.php` obsahuje pouze základní layout aplikace, společnou navigaci, kontejner pro obsah a úvodní obrazovku.
-- Každá další obrazovka má vlastní HTML soubor v `pages/` a vlastní JS modul v `assets/js/screens/`.
+- `index.php` obsahuje pouze základní layout aplikace, společnou navigaci, prázdný kontejner pro obsah a patičku. Ani úvodní obrazovka není vložena do indexu; načítá se jako samostatná stránka.
+- Každá obrazovka včetně úvodní má vlastní HTML soubor v `pages/` a vlastní JS modul v `assets/js/screens/`.
 - HTML a JS konkrétní obrazovky se načítají až při jejím prvním otevření; opakované otevření může využít cache.
 - `assets/js/app.js` zůstává pouze malým navigátorem a načítacím bodem. Nesmí obsahovat všechny obrazovky ani jejich aplikační logiku.
 - Herní prostředky, AI, 2D a 3D vykreslování se načítají až tehdy, když jsou skutečně potřeba.
