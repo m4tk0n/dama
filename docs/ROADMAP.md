@@ -124,9 +124,9 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Stav:** ROZPRACOVÁNO – AI je zapojena a automatické testy i nasazení prošly; herní chování je potřeba ověřit při praktickém hraní.
 - **Změna:** Přidán samostatný modul `assets/js/variants/czech-8/ai.js`. AI vyhodnocuje legální tahy poskytované enginem české dámy, prohledává celé tahy včetně vícenásobného braní a používá alfa-beta minimax s odlišnou hloubkou pro lehkou, střední a těžkou obtížnost. Herní obrazovka načítá AI pouze při hře proti počítači v české variantě; počítač hraje černými, člověk bílými. Při vícenásobném braní AI provede celou sekvenci sama.
 - **Důvod:** Umožnit skutečnou hru člověka proti počítači namísto dosavadního ručního ovládání obou stran.
-- **Dotčené soubory:** `assets/js/variants/czech-8/ai.js`, `assets/js/screens/game.js`, `tests/czech-ai.test.mjs`, `docs/ROADMAP.md`.
+- **Dotčené soubory:** `assets/js/variants/czech-8/ai.js`, `assets/js/screens/game.js`, `tests/czech-ai.test.mjs`, `index.php` (verzování AI modulu), `docs/ROADMAP.md`.
 - **Ověření:** GitHub Actions run [43435229912](https://github.com/m4tk0n/dama/actions/runs/43435229912) úspěšně dokončil kontrolu PHP/JavaScript syntaxe, všech 20 automatických testů (20 úspěšných, 0 chybných), FTP synchronizaci a HTTP health check (200). Praktické hraní v prohlížeči nebylo automaticky ověřeno.
-- **Commit:** `fb983c2c7b5ebeab5847f05602ef1874144e50d8`
+- **Commity:** AI a napojení `fb983c2c7b5ebeab5847f05602ef1874144e50d8`, verzování modulu `ea4b511c7892bc98be2842a828e31624be3432d0`.
 
 ### 01.00.014 – Upřesnění směru braní Klasické dámy
 
