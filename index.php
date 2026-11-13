@@ -30,6 +30,7 @@ $assets = [
     'loginJs' => 'assets/js/screens/login.js',
     'boardCss' => 'assets/css/board-2d.css',
     'boardJs' => 'assets/js/board-2d.js',
+    'gameEngine' => 'assets/js/game-engine.js',
 ];
 $assetVersions = [];
 foreach ($assets as $key => $path) {
