@@ -12,8 +12,9 @@
 - Kameny se pohybují po diagonálách a nesmějí přeskakovat vlastní kameny.
 - Obyčejný kámen se pohybuje pouze dopředu.
 - Pokud kámen nebere, posune se o jedno políčko.
-- Při braní přeskočí soupeřův kámen nebo dámu a následně ji odstraní z hrací desky.
-- Jedním tahem může přeskočit a vzít více soupeřových kamenů nebo dam.
+- Při braní skáče výhradně dopředu; dozadu nesmí skákat ani při vícenásobném braní.
+- Při skoku přeskočí soupeřův kámen nebo dámu a následně ji odstraní z hrací desky.
+- Jedním tahem může přeskočit a vzít více soupeřových kamenů nebo dam, ale každý jednotlivý skok musí být směrem vpřed.
 
 ## 3. Proměna a pohyb dámy
 - Kámen, který dojde na poslední řadu šachovnice, se promění v dámu.
@@ -39,6 +40,10 @@
 - Přesné pořadí odstraňování více braných figur a úplná pravidla volby mezi různými sekvencemi braní.
 - Některé procedurální podrobnosti opravy chybného tahu.
 Tyto detaily se nesmějí domýšlet jako potvrzená pravidla zdroje; před implementací je nutné je doplnit z autoritativního pravidlového zdroje nebo výslovným rozhodnutím projektu.
+
+## 7. Výslovně potvrzené upřesnění uživatelem
+- Obyčejný kámen (pešák) smí při braní skákat pouze vpřed, a to i v každém kroku vícenásobného braní.
+- Dáma smí při braní skákat vpřed i vzad po diagonále na libovolnou vzdálenost.
 
 ## Zdroj
 - Česká Wikipedie – [Dáma (desková hra)](https://cs.wikipedia.org/wiki/Dáma_(desková_hra)), oddíl „Klasická dáma“.
