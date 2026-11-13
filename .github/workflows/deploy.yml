@@ -21,6 +21,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate PHP and JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l index.php
+          while IFS= read -r -d '' file; do
+            node --experimental-default-type=module --check "$file"
+          done < <(find assets/js -type f -name '*.js' -print0)
+          for file in pages/*.html; do
+            test -s "$file"
+          done
+
       - name: Resolve FTP server to IPv4
         id: ftp_ipv4
         shell: bash
