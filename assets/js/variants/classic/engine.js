@@ -17,11 +17,11 @@ function capturesAt(board,index){
   if(piece.king){while(inside(nr,nc)&&!board[at(nr,nc)]){nr+=dr;nc+=dc}}
   else if(inside(nr,nc)&&!board[at(nr,nc)])continue;
   if(!inside(nr,nc))continue;
-  const victim=board[at(nr,nc)];
+  const victimIndex=at(nr,nc),victim=board[victimIndex];
   if(!victim||victim.player===piece.player)continue;
   nr+=dr;nc+=dc;
   while(inside(nr,nc)&&!board[at(nr,nc)]){
-   moves.push({from:index,to:at(nr,nc),captured:at(nr-dr,nc-dc)});
+   moves.push({from:index,to:at(nr,nc),captured:victimIndex});
    if(!piece.king)break;
    nr+=dr;nc+=dc;
   }
