@@ -86,9 +86,9 @@ Každý engine musí poskytovat jasné rozhraní pro vytvoření počátečního
 
 ## 7. Závazné autoritativní dokumenty
 
-- Klasická dáma: docs/RULES_CLASSIC.md (zatím nevytvořen – pravidla musí být specifikována).
-- Žravá dáma: docs/RULES_GIVEAWAY.md (zatím nevytvořen – pravidla musí být specifikována).
+- Klasická dáma: docs/RULES_CLASSIC.md (osnova vytvořena, pravidla zatím neúplná).
+- Žravá dáma: docs/RULES_GIVEAWAY.md (osnova vytvořena, pravidla zatím neúplná).
 - Česká dáma: docs/RULES_CZECH.md.
-- Mezinárodní dáma: docs/RULES_INTERNATIONAL.md (zatím nevytvořen – pravidla musí být specifikována).
+- Mezinárodní dáma: docs/RULES_INTERNATIONAL.md (osnova vytvořena, pravidla zatím neúplná).
 
 Dokumenty pro neimplementované varianty se nesmějí doplnit odhadem. Po ověření úplných pravidel se každý dokument stane jediným autoritativním zdrojem dané varianty.
