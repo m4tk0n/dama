@@ -1,6 +1,6 @@
 # Pravidla Žravé dámy
 
-<badge>NEÚPLNÉ – zatím neschváleno</badge>
+**STAV: NEÚPLNÉ – zatím neschváleno**
 
 Tento soubor je vyhrazen výhradně pravidlům varianty Žravá dáma. Nesmí se automaticky přebírat pravidla české, klasické ani mezinárodní dámy. Zvláštní pozornost musí být věnována podmínkám vítězství a případným specifickým pravidlům braní.
 
