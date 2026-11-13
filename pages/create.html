@@ -1,7 +1,32 @@
 <section class="screen" aria-labelledby="create-title"><div class="content-panel">
 <button class="back-button" type="button" data-screen="home">← Zpět</button>
 <p class="eyebrow">Nová partie</p><h1 id="create-title">Vytvořit místní hru</h1>
-<div class="field-group"><label for="game-variant">Varianta hry</label><select id="game-variant"><option value="czech-8">Česká dáma 8×8</option><option value="international-10">Mezinárodní dáma 10×10 – test zobrazení</option><option value="other" disabled>Další varianty – připravujeme</option></select></div>
+<div class="field-group"><label for="game-variant">Varianta hry</label><select id="game-variant">
+<optgroup label="Klasické varianty">
+<option value="classic">Klasická dáma – 8×8</option>
+<option value="giveaway">Žravá dáma – 8×8</option>
+</optgroup>
+<optgroup label="České varianty">
+<option value="czech-8" selected>Česká dáma podle ČFD – 8×8</option>
+<option value="czech-zapletal">Česká dáma dle Zapletala – 8×8</option>
+</optgroup>
+<optgroup label="Národní a mezinárodní varianty">
+<option value="english">Anglická dáma – 8×8</option>
+<option value="international-10">Mezinárodní dáma – 10×10</option>
+<option value="brazilian">Brazilská dáma – 8×8</option>
+<option value="spanish">Španělská dáma – 8×8</option>
+<option value="turkish">Turecká (Keny) dáma</option>
+</optgroup>
+<optgroup label="Další varianty uvedené na Wikipedii">
+<option value="corner">Rohová dáma</option>
+<option value="twenty-ten">Dvacet proti deseti</option>
+<option value="medieval-battle">Středověká bitva</option>
+<option value="knight">Jezdecká dáma</option>
+<option value="dam">Dám</option>
+<option value="canadian">Kanadská dáma</option>
+<option value="double">Dvojitá dáma</option>
+</optgroup>
+</select><small class="muted-note">Všechny varianty jsou ve výběru. Hratelné budou po dokončení a otestování vlastních pravidel a enginu.</small></div>
 <fieldset class="field-group"><legend>Proti komu chcete hrát?</legend>
 <label class="choice-row"><input type="radio" name="opponent" value="human" checked> Dva hráči na jednom zařízení</label>
 <label class="choice-row"><input type="radio" name="opponent" value="ai"> Proti počítači</label></fieldset>
