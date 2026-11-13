@@ -1,20 +1,30 @@
 <?php
 declare(strict_types=1);
+
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: strict-origin-when-cross-origin');
 header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
-$assetVersion = '01.00.002';
+
+function assetVersion(string $relativePath): string
+{
+    $absolutePath = __DIR__ . '/' . ltrim($relativePath, '/');
+    $modifiedAt = is_file($absolutePath) ? filemtime($absolutePath) : false;
+
+    return (string) ($modifiedAt !== false ? $modifiedAt : 0);
+}
 ?>
 <!doctype html>
 <html lang="cs"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#172033"><meta name="description" content="Dáma – česká dáma a další herní varianty.">
 <title>Dáma</title>
-<link rel="stylesheet" href="assets/css/app.css?v=<?= htmlspecialchars($assetVersion, ENT_QUOTES, 'UTF-8') ?>">
-<script type="module" src="assets/js/app.js?v=<?= htmlspecialchars($assetVersion, ENT_QUOTES, 'UTF-8') ?>"></script>
+<link rel="stylesheet" href="assets/css/app.css?v=<?= htmlspecialchars(assetVersion('assets/css/app.css'), ENT_QUOTES, 'UTF-8') ?>">
+<script type="module" src="assets/js/app.js?v=<?= htmlspecialchars(assetVersion('assets/js/app.js'), ENT_QUOTES, 'UTF-8') ?>"></script>
 </head><body><div class="app-shell">
 <header class="topbar"><a class="brand" href="./" aria-label="Dáma – úvodní stránka" data-screen-link="home">Dáma</a><button class="button button-outline login-button" type="button" data-action="login">Přihlásit se</button></header>
-<main id="app-main">
+<main id="app-main"
+ data-board-2d-css-version="<?= htmlspecialchars(assetVersion('assets/css/board-2d.css'), ENT_QUOTES, 'UTF-8') ?>"
+ data-board-2d-js-version="<?= htmlspecialchars(assetVersion('assets/js/board-2d.js'), ENT_QUOTES, 'UTF-8') ?>">
 <section class="screen is-active" id="screen-home" aria-labelledby="home-title"><div class="home-content">
 <p class="eyebrow">Herní centrum</p><h1 id="home-title">Dáma</h1><p class="intro">Vyberte si způsob hry.</p>
 <nav class="main-menu" aria-label="Hlavní nabídka">
