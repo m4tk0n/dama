@@ -52,9 +52,9 @@ test('Zapletal AI plays its opening turn as black and returns a complete legal t
 test('Zapletal AI completes a forced multi-capture in one selected turn',()=>{
  const state=zapletal.createInitialState();
  state.board=Array(64).fill(null);
- state.board[17]={player:'black',king:false};
- state.board[26]={player:'white',king:false};
- state.board[44]={player:'white',king:false};
+ state.board[42]={player:'black',king:false};
+ state.board[35]={player:'white',king:false};
+ state.board[21]={player:'white',king:false};
  state.currentPlayer='black';
  const choice=chooseZapletalTurn(state,zapletal,'easy');
  assert.equal(choice.moves.length,2);
