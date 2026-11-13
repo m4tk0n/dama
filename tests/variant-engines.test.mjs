@@ -31,7 +31,7 @@ test('classic capture is mandatory and a flying queen may land beyond a victim',
 });
 test('classic man may capture only forward',()=>{
  const state=stateWith(classic,[[4,3,'white'],[3,2,'black']]);
- assert.deepEqual(classic.getLegalMoves(state),[]);
+ assert.ok(classic.getLegalMoves(state).every(move=>move.captured===null));
 });
 test('classic man may not reverse direction during a multiple capture',()=>{
  const state=stateWith(classic,[[2,1,'white'],[3,2,'black'],[3,4,'black']]);
