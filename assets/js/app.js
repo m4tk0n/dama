@@ -1,6 +1,7 @@
 const root=document.querySelector('#app-view');
 const versions=JSON.parse(root.dataset.assets||'{}');
 const routes={
+  home:{html:'pages/home.html',htmlVersion:versions.homeHtml,module:'./screens/home.js',moduleVersion:versions.homeJs},
   create:{html:'pages/create.html',htmlVersion:versions.createHtml,module:'./screens/create.js',moduleVersion:versions.createJs},
   game:{html:'pages/game.html',htmlVersion:versions.gameHtml,module:'./screens/game.js',moduleVersion:versions.gameJs},
   rooms:{html:'pages/rooms.html',htmlVersion:versions.roomsHtml,module:'./screens/rooms.js',moduleVersion:versions.roomsJs},
@@ -13,13 +14,6 @@ const state={};
 let currentRoute='home';
 
 async function navigate(name,nextState={},updateHistory=true){
-  if(name==='home'){
-    currentRoute='home';
-    root.innerHTML=homeMarkup;
-    if(updateHistory)history.pushState({screen:'home'},'','./');
-    window.scrollTo({top:0,behavior:'instant'});
-    return;
-  }
   const route=routes[name];
   if(!route)return;
   currentRoute=name;
@@ -48,7 +42,6 @@ async function navigate(name,nextState={},updateHistory=true){
   }
 }
 
-const homeMarkup=root.innerHTML;
 document.addEventListener('click',event=>{
   const button=event.target.closest('[data-screen]');
   if(!button)return;
@@ -58,3 +51,4 @@ document.addEventListener('click',event=>{
 window.addEventListener('popstate',event=>{
   navigate(event.state?.screen||'home',{},false);
 });
+navigate('home',{},false);
