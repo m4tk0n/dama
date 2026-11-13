@@ -23,6 +23,7 @@ Před každým novým úkolem, který se týká projektu:
 4. Podle úkolu načíst související dokumentaci, zejména:
    - `docs/SERVER_ENVIRONMENT.md` při práci se serverem, PHP, databází, konfigurací nebo nasazením.
    - `docs/AI_DEVELOPMENT_STRUCTURE.md` při práci s AI, trénováním, vahami, modely nebo daty.
+   - `docs/REQUIREMENTS.md` při práci na funkcích, rozhraní nebo architektuře aplikace.
 5. Zkontrolovat aktuální stav dotčených souborů a související implementace na `main`. Nespoléhat na staré výpisy, předchozí odpovědi ani předpoklad, že se repozitář nezměnil.
 6. Zkontrolovat relevantní historii commitů nebo testů, pokud je to potřebné pro bezpečné pokračování.
 
@@ -50,6 +51,17 @@ Pokud některý dokument nebo soubor není dostupný, AI to musí uvést a nesm�
 - Neodstraňovat soubory ani funkce bez jasného důvodu a opory v zadání.
 - Nevkládat do projektu diagnostický nebo testovací kód, který by se spouštěl běžným uživatelům, pokud to není výslovně zamýšleno.
 - U změn AI respektovat oddělení vývojového/trénovacího prostředí a produkční AI podle `AI_DEVELOPMENT_STRUCTURE.md`.
+
+### 4.1 CSS, JavaScript a načítání
+
+- CSS se nesmí nekontrolovaně rozrůstat. Před vytvořením nového CSS souboru zkontrolovat, zda lze úpravu provést v existujícím souboru.
+- Přednostně upravovat původní pravidla a odstraňovat duplicity, překryvy a nepoužívané styly; nepřidávat opakované přepisovací vrstvy.
+- Nový CSS soubor vytvořit jen pro jasně oddělenou funkční oblast nebo samostatně načítanou část, pokud to skutečně zlepšuje architekturu.
+- Společné vizuální hodnoty držet v centrálních CSS proměnných.
+- 2D a 3D styly i vykreslování musí zůstat oddělené. Společné styly smějí obsahovat pouze skutečně společné prvky.
+- 3D CSS a JavaScript se nesmějí načítat při používání 2D. Načítat pouze prostředky potřebné pro aktuální obrazovku a režim.
+- Stejná zásada platí pro JavaScript a PHP: nezdvojovat funkce ani moduly, nepřidávat nové soubory bez důvodu a uklízet nepoužívaný kód.
+- Výkon a malá velikost aplikace mají přednost před nadměrným dělením do mnoha drobných souborů.
 
 ## 5. Pravidla a architektura hry
 
