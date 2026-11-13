@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.001**
+**Aktuální projektová verze: 01.00.002**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -72,16 +72,28 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 </details>
 
-### 01.00.001 – Zavedení závazných pracovních pokynů pro AI
+<details>
+<summary>Verze 01.00.001 – Zavedení závazných pracovních pokynů pro AI</summary>
 
 - **Datum:** 2026-11-13
 - **Stav:** HOTOVO
 - **Změna:** Vytvořen dokument `docs/AI_WORK_INSTRUCTIONS.md`, který stanovuje povinný postup AI při přípravě, implementaci, testování, verzování, nasazování a předávání práce.
 - **Důvod:** Zajistit jednotný a opakovatelný pracovní postup při každém pokračování projektu, včetně nových chatů.
 - **Dotčené soubory:** `docs/AI_WORK_INSTRUCTIONS.md`, `docs/ROADMAP.md`
-- **Ověření:** Oba dokumenty uloženy do větve `main`; obsah nového souboru byl vytvořen a commit potvrzen. Funkčnost aplikace se touto dokumentační změnou nemění.
 - **Commit AI_WORK_INSTRUCTIONS.md:** `71f40045a980741e70f5a6be68ead34ad0042623`
-- **Commit ROADMAP.md:** viz historie GitHubu – commit, kterým byl tento záznam uložen.
+- **Commit ROADMAP.md:** viz historie GitHubu.
+
+</details>
+
+### 01.00.002 – První aplikační kostra
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Přidána první navigační kostra aplikace, obrazovka vytvoření místní hry, výběr české dámy 8×8 a tří úrovní AI, počáteční statické vykreslení desky 8×8 a oddělené lazy načítání 2D stylů a vykreslovače. Založena počáteční specifikace požadavků a pravidla CSS údržby.
+- **Důvod:** Zahájit implementaci po malých ověřitelných částech a současně udržet architekturu připravenou pro další varianty a 3D.
+- **Dotčené soubory:** `index.php`, `assets/css/app.css`, `assets/css/board-2d.css`, `assets/js/app.js`, `assets/js/board-2d.js`, `install/README.md`, `docs/REQUIREMENTS.md`, `docs/AI_WORK_INSTRUCTIONS.md`, `docs/ROADMAP.md`
+- **Ověření:** Zápisy souborů do `main` byly potvrzeny GitHub API. Automatické nasazení, PHP/JavaScript syntaktické kontroly a zobrazení na živém webu zatím nebyly ověřeny. Herní tahy, pravidla a AI zatím nejsou implementovány.
+- **Commity:** `cc36d2aae472b129c048e82f6e7eb8457faa9caf`, `906ae6223519d9561f92fdfe14529f83db33c467`, `fc368e4590eadf2829f4b85899981faec8973c8d`, `6f9ce1a48efca7241a979a28947267e6cfd595da`, `c7fb3a9fffda1c836a230695b4b5c673200e8bd6`, `abaac27ab7330c2a2a976c5cc305ae23f00564c9`, `63f77b122a8c22b05e46bb0334db9c85ae3c875a`
 
 ## 5. Roadmapa – plánované a rozpracované oblasti
 
@@ -89,11 +101,11 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 
 | ID | Oblast | Cíl / další postup | Stav |
 |---|---|---|---|
-| R-001 | Základ aplikace | Připravit vstupní bod aplikace, konfiguraci a základní strukturu PHP projektu | PLÁN |
-| R-002 | Databáze | Navrhnout databázové schéma a bezpečné připojení přes serverový `.env` | PLÁN |
-| R-003 | Pravidla Dámy | Sepsat a zavést jeden autoritativní zdroj pravidel hry | PLÁN |
+| R-001 | Základ aplikace | Vstupní bod a první navigační kostra jsou založeny; doplnit konfiguraci, společné komponenty a bezpečné routování | ROZPRACOVÁNO |
+| R-002 | Databáze | Navrhnout schéma, migrace a bezpečné připojení přes serverový `.env`; prefix načítat z `table_prefix` | PLÁN |
+| R-003 | Pravidla Dámy | Sepsat a zavést jeden autoritativní zdroj úplných pravidel české dámy 8×8 | PLÁN |
 | R-004 | Herní logika | Oddělit pravidla a výpočty tahů od vykreslování herní desky | PLÁN |
-| R-005 | Herní rozhraní | Připravit uživatelské rozhraní a vykreslování desky | PLÁN |
+| R-005 | Herní rozhraní | Základní navigace a počáteční statická 2D deska jsou založeny; doplnit plnohodnotné UI a tahy | ROZPRACOVÁNO |
 | R-006 | AI – základ | Navrhnout rozhodování AI nad legálními tahy podle autoritativních pravidel | PLÁN |
 | R-007 | AI – vývojové prostředí | Vytvořit oddělené prostředí `dama-ai-vyvoj/` pro trénování, experimenty a vyhodnocování | PLÁN |
 | R-008 | AI – učení | Připravit sběr partií, self-play, trénování, váhy a měření výkonnosti | PLÁN |
@@ -127,6 +139,7 @@ Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v př
 
 ## 8. Související dokumentace
 
+- [Požadavky projektu](REQUIREMENTS.md)
 - [Závazné pracovní pokyny pro AI](AI_WORK_INSTRUCTIONS.md)
 - [Prostředí produkčního serveru](SERVER_ENVIRONMENT.md)
 - [Struktura vývoje AI](AI_DEVELOPMENT_STRUCTURE.md)
