@@ -1,8 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
-const source=await readFile(new URL('../assets/js/game-engine.js',import.meta.url),'utf8');
-const {createInitialState,getLegalMoves,getLegalMovesForPiece,playMove,getPieceCounts}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const {createInitialState,getLegalMoves,getLegalMovesForPiece,playMove,getPieceCounts}=await import('../assets/js/variants/czech-8/engine.js');
 
 function emptyState(pieces,currentPlayer='white'){
  const board=Array(64).fill(null);
