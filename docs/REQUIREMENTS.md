@@ -69,7 +69,16 @@ Moje hry budou dostupné přihlášenému uživateli a mají zahrnovat jeho roze
 - Společné vizuální hodnoty mají být centrálně konfigurovatelné pomocí CSS proměnných.
 - Mobilní zobrazení musí být použitelné i na úzkých displejích.
 
-## 11. Otevřené technické otázky
+## 11. Oddělení obrazovek a lazy loading
+
+- `index.php` obsahuje pouze základní layout aplikace, společnou navigaci, kontejner pro obsah a úvodní obrazovku.
+- Každá další obrazovka má vlastní HTML soubor v `pages/` a vlastní JS modul v `assets/js/screens/`.
+- HTML a JS konkrétní obrazovky se načítají až při jejím prvním otevření; opakované otevření může využít cache.
+- `assets/js/app.js` zůstává pouze malým navigátorem a načítacím bodem. Nesmí obsahovat všechny obrazovky ani jejich aplikační logiku.
+- Herní prostředky, AI, 2D a 3D vykreslování se načítají až tehdy, když jsou skutečně potřeba.
+- Odloženě načítané soubory používají vlastní verzi odvozenou z `filemtime()`.
+
+## 12. Otevřené technické otázky
 - Přesná úplná pravidla české dámy, včetně povinnosti braní, směru braní, volby mezi více braními, proměny na dámu a ukončení partie. Před implementací enginu musí vzniknout samostatný autoritativní dokument pravidel.
 - Přesné názvy databázových proměnných v existujícím `.env`, kromě potvrzeného `table_prefix`.
 - Konečné databázové schéma a způsob migrací.
