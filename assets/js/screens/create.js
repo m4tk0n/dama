@@ -5,7 +5,8 @@ export function mount({navigate,root}) {
   root.querySelector('[data-action="start-local"]').addEventListener('click',()=>{
     const opponent=root.querySelector('input[name="opponent"]:checked')?.value||'human';
     const difficulty=root.querySelector('input[name="difficulty"]:checked')?.value||'easy';
-    navigate('game',{opponent,difficulty});
+    const variant=root.querySelector('#game-variant')?.value||'czech-8';
+    navigate('game',{opponent,difficulty,variant});
   });
   update();
 }
