@@ -63,6 +63,18 @@ Pokud některý dokument nebo soubor není dostupný, AI to musí uvést a nesm�
 - Stejná zásada platí pro JavaScript a PHP: nezdvojovat funkce ani moduly, nepřidávat nové soubory bez důvodu a uklízet nepoužívaný kód.
 - Výkon a malá velikost aplikace mají přednost před nadměrným dělením do mnoha drobných souborů.
 
+### 4.2 Povinné oddělení obrazovek a skutečný lazy loading
+
+- `index.php` smí obsahovat pouze základní HTML dokument, společnou kostru aplikace (hlavičku, navigační prvky, hlavní kontejner, patičku) a výchozí úvodní obrazovku.
+- Do `index.php` se nesmějí vkládat HTML obsahy dalších obrazovek, dialogů ani herní plochy.
+- Každá samostatná obrazovka musí mít vlastní HTML soubor v `pages/` a vlastní JavaScriptový modul v `assets/js/screens/`. Obrazovka se stáhne a její modul se importuje až při prvním otevření.
+- `assets/js/app.js` je pouze malý spouštěč/navigátor. Nesmí obsahovat logiku jednotlivých obrazovek ani herní logiku.
+- Obrazovky se nesmějí předem načítat skrytě ani vkládat všechny do jednoho PHP/HTML/JS souboru.
+- HTML a modul konkrétní obrazovky se mají načítat až při otevření dané obrazovky. Opakované otevření může využít již načtený obsah a modul z cache.
+- Herní obrazovka načítá vykreslování a herní prostředky až při spuštění hry. AI se načte pouze pro hru proti AI. 2D a 3D prostředky se načítají pouze pro zvolený režim zobrazení.
+- Verze všech odloženě načítaných HTML, CSS a JS souborů se generují podle jejich vlastního `filemtime()`, aby se po změně obnovila cache.
+- Nové obrazovky nesmějí být přidávány zpět do `index.php` ani jejich logika do centrálního `app.js`. Výjimku tvoří pouze skutečně globální chování aplikace.
+
 ## 5. Pravidla a architektura hry
 
 - Pravidla hry musí mít jeden autoritativní zdroj.
