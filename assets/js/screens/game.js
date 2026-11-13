@@ -28,14 +28,19 @@ export async function mount({root,state,versions}) {
   'czech-zapletal':'../variants/czech-zapletal/engine.js'
  };
  const engine=await import(enginePaths[variant]+'?v='+encodeURIComponent(versions['engine_'+variant]||'1'));
- mode.textContent=state.opponent==='ai'?'AI – ruční test':'2 hráči';
+ mode.textContent=state.opponent==='ai'?(variant==='czech-8'?'Proti AI':'AI není pro tuto variantu dostupná'):'2 hráči';
  let game=null,selected=null,message='Vyberte svou figurku.';
+ let aiModule=null,aiThinking=false;
+ const aiPlayer='black';
  function playerName(player){return player==='white'?'Bílý':'Černý'}
  function render(){
   if(!game)return;
   const available=game.pending?engine.getLegalMoves(game):selected===null?[]:engine.getLegalMovesForPiece(game,selected);
   renderer.renderGameBoard(board,game,selected,available);
-  if(game.gameOver){
+  if(aiThinking){
+   status.textContent='Na tahu: '+playerName(aiPlayer)+' (AI)';
+   hint.textContent='Počítač vybírá tah…';
+  }else if(game.gameOver){
    status.textContent=game.draw?'Partie skončila remízou.':'Konec hry – vyhrál '+playerName(game.winner)+'.';
    hint.textContent=game.draw?'Hráč na tahu nemá legální tah.':'Soupeř nemá žádné kameny.';
   }else if(game.blocked){
@@ -50,8 +55,27 @@ export async function mount({root,state,versions}) {
   }
  }
  function start(startingPlayer){
+  aiThinking=false;
   game=variant==='classic'||variant==='giveaway'?engine.createInitialState({startingPlayer}):engine.createInitialState();
-  selected=null;message='Vyberte svou figurku.';boardWrap.hidden=false;actions.hidden=false;render();
+  selected=null;message=state.opponent==='ai'&&variant!=='czech-8'?'AI je zatím dostupná pouze pro Českou dámu podle ČFD.':'Vyberte svou figurku.';boardWrap.hidden=false;actions.hidden=false;render();
+ }
+ async function runAiTurn(){
+  if(!aiModule||!game||game.gameOver||aiThinking||game.currentPlayer!==aiPlayer)return;
+  aiThinking=true;message='AI vybírá tah.';render();
+  await new Promise(resolve=>setTimeout(resolve,100));
+  const plan=aiModule.chooseTurn(game,engine,state.difficulty||'medium');
+  if(plan?.moves?.length){
+   for(const step of plan.moves){
+    if(game.gameOver||game.currentPlayer!==aiPlayer)break;
+    const result=engine.playMove(game,step);
+    if(!result.ok){message='AI nedokázala provést vypočítaný tah.';break;}
+    selected=game.pending?game.pending.pieceIndex:null;
+    message=game.pending?'AI pokračuje v braní.':'AI dokončila tah.';
+    render();
+    await new Promise(resolve=>setTimeout(resolve,180));
+   }
+  }
+  aiThinking=false;render();
  }
  function chooseStartingPlayer(){
   boardWrap.hidden=true;actions.hidden=true;
@@ -70,7 +94,7 @@ export async function mount({root,state,versions}) {
   render();
  }
  board.addEventListener('click',event=>{
-  if(!game||game.gameOver||game.blocked)return;
+  if(!game||game.gameOver||game.blocked||aiThinking||(state.opponent==='ai'&&variant==='czech-8'&&game.currentPlayer===aiPlayer))return;
   const cell=event.target.closest('[data-cell-index]');if(!cell)return;
   const index=Number(cell.dataset.cellIndex);if(!Number.isInteger(index))return;
   const source=game.pending?game.pending.pieceIndex:selected;
@@ -85,6 +109,7 @@ export async function mount({root,state,versions}) {
       const destinationPiece=board.querySelector('[data-cell-index="'+move.to+'"] .board-piece'),rect=destinationPiece?.getBoundingClientRect();
       if(destinationPiece&&rect){destinationPiece.style.transition='none';destinationPiece.style.transform='translate('+(sourceRect.left-rect.left)+'px,'+(sourceRect.top-rect.top)+'px)';destinationPiece.getBoundingClientRect();requestAnimationFrame(()=>{destinationPiece.style.transition='';destinationPiece.style.transform='';})}
      }
+     if(result.turnFinished&&state.opponent==='ai'&&variant==='czech-8'&&game.currentPlayer===aiPlayer)void runAiTurn();
     }
     return;
    }
@@ -97,6 +122,6 @@ export async function mount({root,state,versions}) {
  root.querySelector('#restart-game').addEventListener('click',()=>{
   if(variant==='classic'||variant==='giveaway')chooseStartingPlayer();else start();
  });
+ if(state.opponent==='ai'&&variant==='czech-8')aiModule=await import('../variants/czech-8/ai.js?v='+encodeURIComponent(versions['ai_czech-8']||'1'));
  if(variant==='classic'||variant==='giveaway')chooseStartingPlayer();else start();
- if(state.opponent==='ai')message='AI zatím není zapojená; obě strany ovládáte ručně.';
 }
