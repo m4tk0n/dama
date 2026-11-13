@@ -1,5 +1,7 @@
-export function mount({root}) {
+export function mount({root,navigate}) {
   const dialog=root.querySelector('dialog');
-  if(dialog && !dialog.open) dialog.showModal();
-  dialog?.addEventListener('close',()=>root.replaceChildren());
+  if(!dialog)return;
+  dialog.removeAttribute('open');
+  dialog.showModal();
+  dialog.addEventListener('close',()=>navigate('home'));
 }
