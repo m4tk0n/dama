@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.006**
+**Aktuální projektová verze: 01.00.007**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -103,9 +103,9 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 |---|---|---|---|
 | R-001 | Základ aplikace | Základní layout je oddělen; každá další obrazovka se načítá z vlastního HTML a JS modulu až při otevření. Doplnit konfiguraci a bezpečné routování | ROZPRACOVÁNO |
 | R-002 | Databáze | Navrhnout schéma, migrace a bezpečné připojení přes serverový `.env`; prefix načítat z `table_prefix` | PLÁN |
-| R-003 | Pravidla Dámy | Sepsat a zavést jeden autoritativní zdroj úplných pravidel české dámy 8×8 | PLÁN |
-| R-004 | Herní logika | Oddělit pravidla a výpočty tahů od vykreslování herní desky | PLÁN |
-| R-005 | Herní rozhraní | Základní navigace a počáteční statická 2D deska jsou založeny; doplnit plnohodnotné UI a tahy | ROZPRACOVÁNO |
+| R-003 | Pravidla Dámy | Autoritativní pravidla české dámy 8×8 jsou sepsána v `docs/RULES_CZECH.md`; doplnit pravidla remízy a jejich testy | ROZPRACOVÁNO |
+| R-004 | Herní logika | Základní engine `assets/js/game-engine.js` počítá legální tahy, povinné braní, vícenásobné braní, prioritu dámy, proměnu a konec hry; doplnit další hraniční případy a remízu | ROZPRACOVÁNO |
+| R-005 | Herní rozhraní | 2D deska 8×8 podporuje výběr figurky, zvýraznění legálních cílů, vizuální zvednutí a provedení tahu; doplnit další herní ovládání a ověření na zařízení | ROZPRACOVÁNO |
 | R-006 | AI – základ | Navrhnout rozhodování AI nad legálními tahy podle autoritativních pravidel | PLÁN |
 | R-007 | AI – vývojové prostředí | Vytvořit oddělené prostředí `dama-ai-vyvoj/` pro trénování, experimenty a vyhodnocování | PLÁN |
 | R-008 | AI – učení | Připravit sběr partií, self-play, trénování, váhy a měření výkonnosti | PLÁN |
@@ -113,6 +113,17 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-010 | Nasazení | Ověřit bezpečné automatické nasazení na Webzdarma bez přepsání `.env` | PLÁN |
 
 ## 6. Záznamy významných změn
+
+### 01.00.007 – Interaktivní česká dáma 8×8 a herní engine
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Přidán samostatný herní engine pro českou dámu 8×8 a oddělený autoritativní dokument pravidel. Hráč vybírá figurku kliknutím, vybraná figurka se opticky zvedne, legální cíle se zvýrazní a kliknutím na cíl se tah provede. Podporováno je povinné braní, vícenásobné braní, priorita braní dámou, létající dáma, proměna kamene, odstranění braných figur po dokončení sekvence a výhra při ztrátě všech figur nebo zablokování.
+- **Důvod:** Převést statický náhled desky na skutečně ovladatelnou hru a oddělit výpočty pravidel od vykreslování.
+- **Dotčené soubory:** `assets/js/game-engine.js`, `assets/js/board-2d.js`, `assets/js/screens/game.js`, `assets/css/board-2d.css`, `pages/game.html`, `index.php`, `tests/game-engine.test.mjs`, `.github/workflows/deploy.yml`, `docs/RULES_CZECH.md`, `docs/REQUIREMENTS.md`, `docs/AI_WORK_INSTRUCTIONS.md`, `docs/ROADMAP.md`
+- **Omezení:** 10×10 zůstává pouze statickým náhledem. AI není implementována; při volbě režimu AI lze prozatím ovládat obě barvy ručně. Automatické rozpoznávání remízy zatím není implementováno.
+- **Ověření:** Přidáno 8 automatických testů pravidel a jejich spuštění v GitHub Actions. Čeká na výsledek CI a vizuální ověření na mobilu.
+- **Commity:** `f37840b2f07431f20c2293a01eb8448bdf45104d`, `acf0731f06c0e689e5baf1f0ada9235b6c3f5f1f`, `45a72411dc8450a0ff95677edbe2ca73c4b49bc7`, `8fb40792d7883f814d94fb480d42b266a21769f4`, `f9853070afe3615d255ca57e174cf599bf8351ae`, `cc70d94980d3deb9fd1c9be1a7dbd1b83a98ed82`, `7e480c7e8d8ad635f20a2d0462e807e387f7dc99`, `e148e936783b0264989bae9e13aaefb1961aa6fc`, `5c4456d152f8cb85a902b06aa8ad50d3b833ca84`, `df921c77e658eb8880fee12f99c72c6a40396148`, `29eebd5a0e41db8e473809a068a01b6d88e8da05`
 
 ### 01.00.006 – Dočasné zpřístupnění náhledu desky 10×10
 
