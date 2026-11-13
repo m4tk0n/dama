@@ -5,8 +5,15 @@ declare(strict_types=1);
 header('Content-Type: text/plain; charset=utf-8');
 
 $config = [];
-$envFile = __DIR__ . '/.env';
-if (is_readable($envFile)) {
+$envFound = false;
+$envPaths = [
+    __DIR__ . '/.env',
+    dirname(__DIR__) . '/.env',
+    dirname(dirname(__DIR__)) . '/.env',
+];
+foreach ($envPaths as $envFile) {
+    if (!is_readable($envFile)) continue;
+    $envFound = true;
     foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) ?: [] as $line) {
         $line = trim($line);
         if ($line === '' || str_starts_with($line, '#')) continue;
@@ -40,21 +47,23 @@ echo "mysqli extension: " . (extension_loaded('mysqli') ? 'available' : 'not ava
 echo "PDO extension: " . (extension_loaded('pdo') ? 'available' : 'not available') . "\n";
 echo "PDO MySQL driver: " . (extension_loaded('pdo_mysql') ? 'available' : 'not available') . "\n";
 if (extension_loaded('mysqli')) echo "MySQL client library: " . mysqli_get_client_info() . "\n";
+echo "Server .env file found: " . ($envFound ? 'yes' : 'no') . "\n";
 
-$dbHost = $getConfig(['DB_HOST', 'MYSQL_HOST']);
-$dbName = $getConfig(['DB_NAME', 'DB_DATABASE', 'MYSQL_DATABASE']);
-$dbUser = $getConfig(['DB_USER', 'DB_USERNAME', 'MYSQL_USER']);
-$dbPass = $getConfig(['DB_PASSWORD', 'DB_PASS', 'MYSQL_PASSWORD']);
+$dbHost = $getConfig(['DB_HOST', 'DB_HOSTNAME', 'DB_SERVER', 'MYSQL_HOST', 'DATABASE_HOST']);
+$dbName = $getConfig(['DB_NAME', 'DB_DATABASE', 'MYSQL_DATABASE', 'DATABASE_NAME']);
+$dbUser = $getConfig(['DB_USER', 'DB_USERNAME', 'MYSQL_USER', 'DATABASE_USER']);
+$dbPass = $getConfig(['DB_PASSWORD', 'DB_PASS', 'DB_PASSWD', 'MYSQL_PASSWORD', 'DATABASE_PASSWORD']);
 
 if (extension_loaded('mysqli') && $dbHost !== '' && $dbName !== '' && $dbUser !== '') {
     mysqli_report(MYSQLI_REPORT_OFF);
     $db = @new mysqli($dbHost, $dbUser, $dbPass, $dbName);
     if ($db->connect_errno) {
-        echo "MySQL server version: connection failed (" . $db->connect_errno . ")\n";
+        echo "MySQL server version: connection failed (" . $db->connect_errno . ")\\n";
     } else {
-        echo "MySQL server version: " . $db->server_info . "\n";
+        echo "MySQL server version: " . $db->server_info . "\\n";
         $db->close();
     }
 } else {
-    echo "MySQL server version: not checked (database connection settings not found in .env or server environment)\n";
+    echo "MySQL server version: not checked (connection settings not found)\\n";
+    echo "Recognized database keys in .env: " . implode(', ', array_values(array_intersect(array_keys($config), ['DB_HOST','DB_HOSTNAME','DB_SERVER','MYSQL_HOST','DATABASE_HOST','DB_NAME','DB_DATABASE','MYSQL_DATABASE','DATABASE_NAME','DB_USER','DB_USERNAME','MYSQL_USER','DATABASE_USER','DB_PASSWORD','DB_PASS','DB_PASSWD','MYSQL_PASSWORD','DATABASE_PASSWORD']))) . "\\n";
 }
