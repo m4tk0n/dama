@@ -65,9 +65,9 @@ Pokud některý dokument nebo soubor není dostupný, AI to musí uvést a nesm�
 
 ### 4.2 Povinné oddělení obrazovek a skutečný lazy loading
 
-- `index.php` smí obsahovat pouze základní HTML dokument, společnou kostru aplikace (hlavičku, navigační prvky, hlavní kontejner, patičku) a výchozí úvodní obrazovku.
+- `index.php` smí obsahovat pouze základní HTML dokument a společnou kostru aplikace (hlavičku, navigační prvky, prázdný hlavní kontejner, patičku). Nesmí obsahovat HTML žádné obrazovky včetně úvodní; i úvodní obrazovka se načte jako samostatná stránka po spuštění navigátoru.
 - Do `index.php` se nesmějí vkládat HTML obsahy dalších obrazovek, dialogů ani herní plochy.
-- Každá samostatná obrazovka musí mít vlastní HTML soubor v `pages/` a vlastní JavaScriptový modul v `assets/js/screens/`. Obrazovka se stáhne a její modul se importuje až při prvním otevření.
+- Každá samostatná obrazovka včetně úvodní musí mít vlastní HTML soubor v `pages/` a vlastní JavaScriptový modul v `assets/js/screens/`. HTML se stáhne a modul se importuje až při otevření dané obrazovky.
 - `assets/js/app.js` je pouze malý spouštěč/navigátor. Nesmí obsahovat logiku jednotlivých obrazovek ani herní logiku.
 - Obrazovky se nesmějí předem načítat skrytě ani vkládat všechny do jednoho PHP/HTML/JS souboru.
 - HTML a modul konkrétní obrazovky se mají načítat až při otevření dané obrazovky. Opakované otevření může využít již načtený obsah a modul z cache.
