@@ -10,8 +10,8 @@ Seznam vychází z pojmenovaných variant uvedených v českém článku Wikiped
 |---|---|---|---|
 | classic | Klasická dáma | docs/RULES_CLASSIC.md | Samostatný engine v1; začínající stranu volí hráč, procedurální detaily braní zůstávají k ověření |
 | giveaway | Žravá dáma | docs/RULES_GIVEAWAY.md | Samostatný engine v1; přebírá pohyb Klasické dámy a obrací podmínku vítězství |
-| czech-8 | Česká dáma podle ČFD | docs/RULES_CZECH.md | Samostatný engine v1 pro desku 8×8 |
-| czech-zapletal | Česká dáma dle Zapletala | docs/RULES_CZECH_ZAPLETAL.md | Samostatný engine pohybu v1; 8 kamenů, začíná černý; konec partie záměrně nevyhodnocuje |
+| czech-8 | Česká dáma podle ČFD | docs/RULES_CZECH.md | Samostatný engine v1 a hratelná AI |
+| czech-zapletal | Česká dáma dle Zapletala | docs/RULES_CZECH_ZAPLETAL.md | Samostatný engine pohybu v1 a samostatná AI; 8 kamenů, začíná černý; konec partie záměrně nevyhodnocuje |
 | english | Anglická dáma | docs/RULES_ENGLISH.md | Odlišnosti z Wikipedie přeneseny; úplná pravidla k doplnění |
 | international-10 | Mezinárodní dáma | docs/RULES_INTERNATIONAL.md | Odlišnosti z Wikipedie přeneseny; pouze vizuální náhled 10×10 |
 | brazilian | Brazilská dáma | docs/RULES_BRAZILIAN.md | Odlišnosti z Wikipedie přeneseny; úplná pravidla k doplnění |
@@ -35,7 +35,7 @@ Dalších osm herních názvů (Turecká/Keny, Rohová, Dvacet proti deseti, St�
 
 Všech 16 variant je viditelných a lze je vybrat při vytváření místní hry. Výběr však neznamená, že je hra implementována.
 
-- Česká dáma podle ČFD je jediná aktuálně hratelná varianta.
+- Hratelné jsou Klasická, Žravá, Česká podle ČFD a Česká dle Zapletala; obě české varianty podporují také hru proti vlastní AI.
 - Mezinárodní dáma 10×10 je pouze statický vizuální náhled.
 - U ostatních variant se zobrazí informace, že se připravují; nesmějí se spustit s enginem jiné varianty.
 - Neimplementovaná varianta nesmí být tiše nahrazena českou dámou.
