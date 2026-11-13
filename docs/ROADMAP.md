@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.012**
+**Aktuální projektová verze: 01.00.013**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -118,6 +118,17 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Commity pravidel:** dcefc65a9c50345aff71e5f38c6cff38ae59bf50, ffd70078f22a47d81c3d416f68deba8dac8c4e9c
 - **Commit registru:** aac4864dcf9b086bc6e3055a84b6391f957f024f
 
+### 01.00.013 – První samostatné herní enginy variant
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO – implementace zapsána, automatické ověření čeká
+- **Změna:** Přidány samostatné moduly `setup.js` a `engine.js` pro Klasickou, Žravou, Českou podle ČFD a Českou dle Zapletala. Každá varianta má vlastní počáteční rozestavení a vlastní výpočet legálních tahů. Herní obrazovka dynamicky načítá engine podle ID varianty; renderer přijímá rozměr desky ze stavu. U Klasické a Žravé dámy se začínající strana vybírá při spuštění, protože zdroj ji neurčuje. Zapletalův engine záměrně neurčuje vítěze ani remízu, protože tato pravidla nejsou potvrzena.
+- **Důvod:** Odstranit závislost hry na jediném enginu české dámy a zabránit spuštění jedné varianty podle pravidel jiné.
+- **Dotčené soubory:** `assets/js/variants/{classic,giveaway,czech-8,czech-zapletal}/setup.js`, `assets/js/variants/{classic,giveaway,czech-8,czech-zapletal}/engine.js`, `assets/js/game-engine.js`, `assets/js/screens/game.js`, `assets/js/board-2d.js`, `index.php`, `tests/game-engine.test.mjs`, `tests/variant-engines.test.mjs`, `docs/GAME_VARIANTS.md`, `docs/REQUIREMENTS.md`, `docs/ROADMAP.md`.
+- **Omezení:** Klasická/Žravá mají neupřesněné procedurální detaily vícenásobného braní; jejich engine v1 proto nelze považovat za definitivní specifikaci těchto detailů. Zapletalův engine se po situaci bez legálního tahu bezpečně pozastaví bez určení výsledku. AI není zapojena.
+- **Ověření:** Automatické testy a syntaxe čekají na výsledek GitHub Actions po posledním commitu. Živé nasazení zatím není potvrzeno.
+- **Commity:** `e8527201c07127b6b8fffa38c868a591688c1ba3`, `6edf6124b3093c0722646b3e1da6185a5375229d`, `dcd3df8a641607a41cc14149df1ab3280583a122`, `44ac2607bddab902dbbaaabbc0565f2b3a4c7565`, `0e7b4367b1b49428ef10f919babd1c6be2b42bd3`, `28b5a709e3cffddfc8ee9edf76f3ea47d0970826`, `c512bbceecbcde168521c99162f59008b2c45a0c`, `73d5c51fe4bbd89a25f2e028eea39a9b03e10ea6`, `ea5a3663053e153840810aa81164ab9458454cc7`, `e2c61ae2a3302e963b2c93173055e2e69ae54c21`, `cb4ad0ecd8a597693b8dbe72bdeadf870b358434`, `260ad0c5568e41579eeaf91400e36ced2d2c6a6f`, `841380ba76dcd4ce0ab7f9ee0ca7d7e41dc56e50`, `b03e52b5b5b1e14c4153ecc157055fb8344cc41e`, `28e64941b31d85f3752609352bb6fe6289fddd4d`, `657ad3dc45be9b8ae322ea0bd6d0e46d41df1b5a`, `f42816e546ae5c93a7972e26a8f8ddd27f42b9a4`, `b31d760883d219d6020bdf5a587669426f054c1e`, `f423a93afd8fbd08305a92bd8feeb85a1f22fe54`, `ae8f3d057ab1156b7f55a29776adbe805bc42052`, `572ba89dc581739a75562ce0127be5324de7cb79`.
+
 ### 01.00.012 – Upřesnění pravidel České dámy a varianty dle Zapletala
 
 - **Datum:** 2026-11-13
@@ -139,7 +150,7 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-001 | Základ aplikace | Základní layout je oddělen; každá další obrazovka se načítá z vlastního HTML a JS modulu až při otevření. Doplnit konfiguraci a bezpečné routování | ROZPRACOVÁNO |
 | R-002 | Databáze | Navrhnout schéma, migrace a bezpečné připojení přes serverový `.env`; prefix načítat z `table_prefix` | PLÁN |
 | R-003 | Pravidla Dámy | Autoritativní pravidla české dámy 8×8 jsou sepsána v `docs/RULES_CZECH.md`; doplnit pravidla remízy a jejich testy | ROZPRACOVÁNO |
-| R-004 | Herní logika | Základní engine `assets/js/game-engine.js` počítá legální tahy, povinné braní, vícenásobné braní, prioritu dámy, proměnu a konec hry; doplnit další hraniční případy a remízu | ROZPRACOVÁNO |
+| R-004 | Herní logika | Samostatné enginy prvních čtyř variant jsou v1; doplnit hraniční testy a vyřešit otevřené detaily pravidel Klasické/Žravé a konce partie Zapletalovy varianty | ROZPRACOVÁNO |
 | R-005 | Herní rozhraní | 2D deska 8×8 podporuje výběr figurky, zvýraznění legálních cílů, vizuální zvednutí a provedení tahu; doplnit další herní ovládání a ověření na zařízení | ROZPRACOVÁNO |
 | R-006 | AI – základ | Navrhnout rozhodování AI nad legálními tahy podle autoritativních pravidel | PLÁN |
 | R-007 | AI – vývojové prostředí | Vytvořit oddělené prostředí `dama-ai-vyvoj/` pro trénování, experimenty a vyhodnocování | PLÁN |
