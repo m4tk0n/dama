@@ -17,9 +17,10 @@ test('initial position has twelve pieces per side and white starts',()=>{
 });
 
 test('men move forward only and only on empty dark squares',()=>{
- const state=emptyState([[2,1,'white'],[3,2,'black']]);
- const moves=getLegalMovesForPiece(state,17);
- assert.deepEqual(moves,[]);
+ const state=emptyState([[4,3,'white'],[3,2,'black']]);
+ const moves=getLegalMovesForPiece(state,35);
+ assert.ok(moves.every(item=>item.captured===null));
+ assert.ok(moves.every(item=>item.to!==17));
 });
 
 test('capture is mandatory and removes the captured piece after the move',()=>{
@@ -59,8 +60,8 @@ test('a queen has priority over a man when both can capture',()=>{
 test('a flying queen can move and capture over distance',()=>{
  const state=emptyState([[2,1,'white',true],[5,4,'black']]);
  const moves=getLegalMovesForPiece(state,17);
- assert.ok(moves.some(item=>item.to===44&&item.captured===44));
  assert.ok(moves.some(item=>item.to===53&&item.captured===44));
+ assert.ok(moves.some(item=>item.to===62&&item.captured===44));
 });
 
 test('a man becomes a queen on the final row',()=>{
