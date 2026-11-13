@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.015**
+**Aktuální projektová verze: 01.00.016**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -118,6 +118,16 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Commity pravidel:** dcefc65a9c50345aff71e5f38c6cff38ae59bf50, ffd70078f22a47d81c3d416f68deba8dac8c4e9c
 - **Commit registru:** aac4864dcf9b086bc6e3055a84b6391f957f024f
 
+### 01.00.016 – Opravit volbu doskoku dámy při vícenásobném braní
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO – změna je implementována a testována v CI; praktické ověření partie pokračuje.
+- **Změna:** Český engine nyní při braní létající dámou vyhodnocuje všechna možná dopadová pole za přeskočenou figurou. Pokud některé z nich umožňuje pokračovat v braní, ostatní dopadová pole pro přeskočení téže figury nejsou legální. Pokud žádné pole pokračování neumožňuje, zůstávají dostupná všechna volná dopadová pole. Pravidlo bylo doplněno do autoritativní dokumentace a do regresních testů. Dokumentace také výslovně stanovuje konec tahu a proměnu pešáka po dosažení poslední řady při braní.
+- **Důvod:** Zajistit, aby lidský hráč i AI používali stejná a úplná pravidla doskoku dámy.
+- **Dotčené soubory:** `assets/js/variants/czech-8/engine.js`, `tests/game-engine.test.mjs`, `docs/RULES_CZECH.md`, `docs/ROADMAP.md`.
+- **Ověření:** Čeká na GitHub Actions po commitu.
+- **Navazuje na:** `fb983c2c7b5ebeab5847f05602ef1874144e50d8` – první hratelná AI.
+
 ### 01.00.015 – První hratelná AI pro Českou dámu
 
 - **Datum:** 2026-11-13
@@ -171,7 +181,7 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-001 | Základ aplikace | Základní layout je oddělen; každá další obrazovka se načítá z vlastního HTML a JS modulu až při otevření. Doplnit konfiguraci a bezpečné routování | ROZPRACOVÁNO |
 | R-002 | Databáze | Navrhnout schéma, migrace a bezpečné připojení přes serverový `.env`; prefix načítat z `table_prefix` | PLÁN |
 | R-003 | Pravidla Dámy | Autoritativní pravidla české dámy 8×8 jsou sepsána v `docs/RULES_CZECH.md`; doplnit pravidla remízy a jejich testy | ROZPRACOVÁNO |
-| R-004 | Herní logika | Samostatné enginy prvních čtyř variant jsou v1; doplnit hraniční testy a vyřešit otevřené detaily pravidel Klasické/Žravé a konce partie Zapletalovy varianty | ROZPRACOVÁNO |
+| R-004 | Herní logika | Samostatné enginy prvních čtyř variant jsou v1; u české dámy doplněno omezení doskoku dámy při pokračování braní; dále dokončit hraniční pravidlové testy | ROZPRACOVÁNO |
 | R-005 | Herní rozhraní | 2D deska 8×8 podporuje výběr figurky, zvýraznění legálních cílů, vizuální zvednutí a provedení tahu; doplnit další herní ovládání a ověření na zařízení | ROZPRACOVÁNO |
 | R-006 | AI – základ | Zapojena první hratelná AI pro Českou dámu podle ČFD; dále zlepšovat taktiku a úplnost pravidelného enginu | ROZPRACOVÁNO |
 | R-007 | AI – vývojové prostředí | Vytvořit oddělené prostředí `dama-ai-vyvoj/` pro trénování, experimenty a vyhodnocování | PLÁN |

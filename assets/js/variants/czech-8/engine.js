@@ -7,26 +7,47 @@ const crownRow=p=>p==='white'?SIZE-1:0;
 export function createInitialState(){
  return {variant:setup.variantId,rulesVersion:setup.rulesVersion,size:SIZE,board:setup.createInitialBoard(),currentPlayer:setup.startingPlayer,selected:null,pending:null,gameOver:false,winner:null,draw:false,lastMove:null};
 }
-function captureOptions(board,index,captured=[]){
+function captureOptionsRaw(board,index,captured=[]){
  const piece=board[index];if(!piece)return [];
  const [r,c]=coords(index),blocked=new Set(captured),result=[];
  const directions=piece.king?DIRECTIONS:DIRECTIONS.filter(([dr])=>dr===forward(piece.player));
  for(const [dr,dc] of directions){
   let nr=r+dr,nc=c+dc;
-  if(!piece.king){
-   if(!inside(nr,nc))continue;
-   const victimIndex=at(nr,nc),victim=board[victimIndex],lr=nr+dr,lc=nc+dc;
-   if(victim&&victim.player!==piece.player&&!blocked.has(victimIndex)&&inside(lr,lc)&&!board[at(lr,lc)])result.push({from:index,to:at(lr,lc),captured:victimIndex});
-   continue;
-  }
-  while(inside(nr,nc)&&!board[at(nr,nc)]){nr+=dr;nc+=dc}
   if(!inside(nr,nc))continue;
+  if(piece.king){
+   while(inside(nr,nc)&&!board[at(nr,nc)]){nr+=dr;nc+=dc}
+   if(!inside(nr,nc))continue;
+  }
   const victimIndex=at(nr,nc),victim=board[victimIndex];
   if(!victim||victim.player===piece.player||blocked.has(victimIndex))continue;
   nr+=dr;nc+=dc;
-  while(inside(nr,nc)&&!board[at(nr,nc)]){result.push({from:index,to:at(nr,nc),captured:victimIndex});nr+=dr;nc+=dc}
+  while(inside(nr,nc)&&!board[at(nr,nc)]){
+   result.push({from:index,to:at(nr,nc),captured:victimIndex});
+   if(!piece.king)break;
+   nr+=dr;nc+=dc;
+  }
  }
  return result;
+}
+function captureOptions(board,index,captured=[]){
+ const piece=board[index],moves=captureOptionsRaw(board,index,captured);
+ if(!piece?.king||!moves.length)return moves;
+ const groups=new Map();
+ for(const move of moves){
+  if(!groups.has(move.captured))groups.set(move.captured,[]);
+  groups.get(move.captured).push(move);
+ }
+ const filtered=[];
+ for(const group of groups.values()){
+  const continuations=group.filter(move=>{
+   const nextBoard=board.slice();
+   nextBoard[index]=null;
+   nextBoard[move.to]=piece;
+   return captureOptionsRaw(nextBoard,move.to,[...captured,move.captured]).length>0;
+  });
+  filtered.push(...(continuations.length?continuations:group));
+ }
+ return filtered;
 }
 function capturesForPlayer(board,player){
  const found=[];

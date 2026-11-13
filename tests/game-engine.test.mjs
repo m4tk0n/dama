@@ -34,6 +34,16 @@ test('capture is mandatory and removes the captured piece after the move',()=>{
  assert.equal(state.currentPlayer,'black');
 });
 
+test('a queen must choose a landing square that permits continuation when one exists',()=>{
+ const state=emptyState([[2,1,'white',true],[3,2,'black'],[5,2,'black']]);
+ const firstMoves=getLegalMovesForPiece(state,17).filter(move=>move.captured===26);
+ assert.deepEqual(firstMoves.map(move=>move.to),[35]);
+ const first=move(state,17,35);
+ assert.equal(first.ok,true);
+ assert.equal(first.turnFinished,false);
+ assert.ok(getLegalMoves(state).some(item=>item.captured===42));
+});
+
 test('a multi-capture must continue with the same piece',()=>{
  const state=emptyState([[2,1,'white'],[3,2,'black'],[5,4,'black']]);
  const first=move(state,17,35);

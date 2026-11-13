@@ -28,10 +28,11 @@ Tento dokument je autoritativním zdrojem pravidel varianty Česká dáma podle 
 - Pokud může brát obyčejným kamenem i dámou, musí zvolit braní dámou.
 - Pokud existuje více různých možností braní, hráč si může vybrat. Není povinné vybrat cestu s nejvyšším počtem braných figur.
 - Po prvním přeskočení musí stejná figura pokračovat v braní, pokud má další možnost.
+- Dáma musí po přeskočení zvolit takové volné dopadové pole, ze kterého může v braní pokračovat, pokud takové pole existuje. Pokud pokračování možné není z žádného dopadového pole, může zvolit libovolné volné pole za přeskočenou figurou.
 - Vícenásobné braní je jeden tah. Během něj se nesmí přejít na jinou vlastní figuru.
 - Přes jednu soupeřovu figuru nelze v rámci jednoho tahu skákat vícekrát.
 - Přeskočené soupeřovy figury zůstávají na desce jako překážky až do dokončení celé sekvence braní; potom se odstraní najednou.
-- Kámen, který během braní dosáhne poslední řady, se stane dámou až po dokončení celé sekvence. Zbytek tohoto tahu dokončuje jako obyčejný kámen.
+- Kámen, který během braní dosáhne poslední řady, tím ukončí svůj tah a promění se v dámu. V témže tahu již nepokračuje jako dáma; nové pohybové možnosti využije až v následujícím tahu.
 
 ## 5. Konec partie
 - Hráč, který je na tahu a nemůže provést legální tah, prohrál. To platí, pokud nemá žádné kameny nebo má všechny své kameny zablokované.
