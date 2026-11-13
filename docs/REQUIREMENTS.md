@@ -3,10 +3,11 @@
 Tento dokument shrnuje uživatelem potvrzené požadavky. Stav implementace se eviduje v `ROADMAP.md`; uvedení požadavku zde neznamená, že je hotový.
 
 ## 1. První herní verze
-- První implementovanou variantou bude česká dáma na desce 8×8.
-- Při vytváření hry je dostupná česká dáma 8×8.
-- Mezinárodní dáma 10×10 je dočasně zpřístupněna pouze pro testování rozměrů a zobrazení desky. Její pravidla, herní logika a tahy zatím nejsou implementované; aplikace to musí v rozhraní jasně označit.
-- Ostatní budoucí varianty zůstávají deaktivované, dokud nebudou implementované a otestované.
+- Projekt bude podporovat čtyři samostatné varianty: Klasická, Žravá, Česká a Mezinárodní dáma.
+- Každá varianta bude v nabídce samostatně identifikovaná a zpřístupněná až po dokončení a otestování vlastních pravidel, rozestavení a enginu.
+- Česká dáma 8×8 je současná implementovaná varianta.
+- Mezinárodní dáma 10×10 je zatím pouze vizuální testovací náhled; nesmí používat česká pravidla ani předstírat funkční hru.
+- Klasická a Žravá dáma zůstávají nedostupné, dokud nebudou jejich pravidla přesně zdokumentována a implementována.
 - První grafické zobrazení bude 2D; v budoucnu bude možné přepnout na 3D.
 
 ## 2. Obtížnost AI
@@ -21,14 +22,18 @@ Hra proti počítači nabídne tři úrovně: Lehká, Střední a Těžká.
 - CSS pro 3D se nebude načítat při používání 2D.
 - Stejný princip střídmého načítání a odstraňování duplicit platí pro JavaScript a PHP.
 
-## 4. Architektura hry
-- Herní pravidla a stav partie mají jeden autoritativní zdroj v `docs/RULES_CZECH.md` a `assets/js/game-engine.js`.
-- Herní logika nesmí být součástí vykreslování.
-- 2D a 3D jsou dvě zobrazení stejného herního stavu.
-- Lokální hra, AI a budoucí online hra musí používat stejný herní engine a pravidla.
-- Produkční AI bude uložena v herní části projektu.
-- Vývoj, trénování a vyhodnocování AI bude v odděleném adresáři `dama-ai-vyvoj/`.
-- Vývojová AI nesmí přímo měnit produkční AI. Přenos nové verze bude řízený, otestovaný a vratný.
+## 4. Architektura hry a variant
+
+- Projekt podporuje samostatné varianty classic, giveaway, czech a international.
+- Každá varianta má vlastní autoritativní pravidla v samostatném dokumentu, vlastní počáteční rozestavení, vlastní herní engine a vlastní testy.
+- Pravidla, rozestavení ani výpočet legálních tahů se mezi variantami nesmějí sdílet. Sdílet lze pouze obecné technické pomocné funkce bez pravidlových rozhodnutí.
+- Společné zůstává vykreslení desky, vykreslení kamene, obecné ovládání, animace a zobrazení herního stavu.
+- Vykreslovač dostává konfiguraci desky a stav hry; nikdy sám nerozhoduje o legálnosti tahu ani o pravidlech.
+- Rozměry desky, aktivní políčka, počet a rozmístění kamenů i vlastnosti tahu určuje vždy zvolená varianta.
+- Lokální hra, AI a online hra musí používat engine zvolené varianty. AI musí mít samostatné vyhodnocování pro každou variantu.
+- Každá uložená partie musí obsahovat identifikátor varianty a verzi pravidel.
+- 2D a 3D jsou pouze dvě zobrazení téhož stavu konkrétní varianty.
+- Produkční AI bude uložena v herní části projektu. Vývoj, trénování a vyhodnocování AI bude v odděleném adresáři dama-ai-vyvoj/. Vývojová AI nesmí přímo měnit produkční AI; přenos nové verze bude řízený, otestovaný a vratný.
 
 ## 5. Režimy a navigace
 Hlavní nabídka má obsahovat přihlášení, Místní hru, Moje hry, Místnosti, Online hru a Pravidla.
@@ -81,6 +86,9 @@ Moje hry budou dostupné přihlášenému uživateli a mají zahrnovat jeho roze
 - Odloženě načítané soubory používají vlastní verzi odvozenou z `filemtime()`.
 
 ## 12. Otevřené technické otázky
+- Úplná a ověřená pravidla Klasické a Žravé dámy a jejich implementace.
+- Úplná pravidla Mezinárodní dámy 10×10 a její samostatný engine; současný náhled je pouze vizuální.
+- Přesné rozlišení pravidel a testů všech čtyř variant včetně podmínek remízy.
 - Pravidla remízy a opakování pozic české dámy – automatické rozpoznávání remízy zatím není implementováno.
 - Přesné názvy databázových proměnných v existujícím `.env`, kromě potvrzeného `table_prefix`.
 - Konečné databázové schéma a způsob migrací.
