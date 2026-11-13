@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: FTP deploy
+    name: FTP deploy and server diagnostics
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -53,3 +53,27 @@ jobs:
             **/.env.*
             .env
             .env.*
+
+      - name: Read PHP and MySQL versions from live server
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://7x.wz.cz/dama/server-info.php"
+          HTTP_STATUS="$(curl --silent --show-error --location --max-time 30 --output server-info-result.txt --write-out '%{http_code}' "$URL")"
+          echo "HTTP status: $HTTP_STATUS"
+          if [ "$HTTP_STATUS" != "200" ]; then
+            cat server-info-result.txt
+            exit 1
+          fi
+          echo '### Live server PHP/MySQL diagnostics' >> "$GITHUB_STEP_SUMMARY"
+          echo '\x60\x60\x60text' >> "$GITHUB_STEP_SUMMARY"
+          tee -a "$GITHUB_STEP_SUMMARY" < server-info-result.txt
+          echo '\x60\x60\x60' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save diagnostics as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dama-server-info
+          path: server-info-result.txt
+          if-no-files-found: error
+          retention-days: 7
