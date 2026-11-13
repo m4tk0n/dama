@@ -121,13 +121,13 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 ### 01.00.014 – Upřesnění směru braní Klasické dámy
 
 - **Datum:** 2026-11-13
-- **Stav:** ROZPRACOVÁNO – pravidlo zapsáno a testy přidány; automatické ověření čeká
+- **Stav:** HOTOVO
 - **Změna:** Výslovně potvrzeno, že obyčejný kámen při braní skáče pouze vpřed, a to i během vícenásobného braní. Dáma smí při braní skákat vpřed i vzad po diagonále na libovolnou vzdálenost. Upřesnění bylo zapsáno do autoritativních pravidel Klasické dámy a doplněno regresními testy pro zákaz zpětného braní pešákem, zákaz změny směru během vícenásobného braní a obousměrné braní dámou.
 - **Důvod:** Odstranit nejasnost pravidel a zajistit, aby engine odpovídal výslovnému rozhodnutí uživatele.
 - **Dotčené soubory:** `docs/RULES_CLASSIC.md`, `tests/variant-engines.test.mjs`.
 - **Implementace enginu:** Stávající výpočet enginu již omezoval braní obyčejného kamene na směr vpřed; jeho pravidlový kód proto nebylo nutné měnit. Byly doplněny testy, které toto chování ověřují.
-- **Ověření:** Zápisy do `main` potvrzeny GitHub API. Automatické testy a nasazení čekají na GitHub Actions.
-- **Commity:** pravidla `25a9ea0057eb1cd318ae41ee8eb293134d1d1374`, testy `03516b8a5e1b8abe3db9977d9f09f986a36a852d`.
+- **Ověření:** GitHub Actions run [43423574717](https://github.com/m4tk0n/dama/actions/runs/43423574717) úspěšně provedl PHP lint, syntaktickou kontrolu JavaScriptu, všech 18 automatických testů (18 úspěšných, 0 chybných), FTP synchronizaci a HTTP health check. Nasazení na Webzdarma bylo úspěšné.
+- **Commity:** pravidla `25a9ea0057eb1cd318ae41ee8eb293134d1d1374`, testy `03516b8a5e1b8abe3db9977d9f09f986a36a852d`, oprava testu `8a90335de02b7c6578ecaf6e8927075eeb4fba32`.
 
 ### 01.00.013 – První samostatné herní enginy variant
 
