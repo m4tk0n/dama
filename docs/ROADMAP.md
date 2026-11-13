@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.010**
+**Aktuální projektová verze: 01.00.011**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -105,6 +105,18 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Zdroj:** https://cs.wikipedia.org/wiki/Dáma_(desková_hra)
 - **Ověření:** Obsah článku byl zkontrolován včetně oddílů pro osm variant s pravidlovým popisem a oddílu „Další varianty“, který uvádí pouze názvy. Byla provedena kontrola zápisů dokumentace do větve `main`. Automatické testy a deployment této dokumentační změny zatím nebyly ověřeny.
 - **Commity pravidel:** `f9a4212f905df05998877246e0e92c13f3e49e19`, `4549b8f908ef90cdecc8053afa9ca358e44cc0a5`, `df12549730a2dc589a69099c36b06d07a4e008a6`, `8e315be49172edc44f42194a726f86d4224f7dce`, `92f61153f3d4b1df6b03c349243a48d32a056520`, `5b15ace2e5205fe62e2f74397a41b6860acd0e4b`, `945f644335d0d6e97ed18248eabd3cefef000a19`, `e5ccfde7418dce9fe5b30e1880efad9867ec68dc`
+
+### 01.00.011 – Upřesnění pravidel Klasické a Žravé dámy
+
+- **Datum:** 2026-11-13
+- **Stav:** HOTOVO – dokumentační změna
+- **Změna:** Pravidla Klasické dámy byla doplněna přesně podle textu dodaného uživatelem: deska 8×8, osm kamenů na hráče ve dvou řadách na tmavých polích, pohyb a braní kamenů, proměna, pohyb dámy, povinné braní, přednost dámy, vítězství a tři uvedené podmínky remízy. U Žravé dámy je výslovně stanoveno, že přebírá pravidla Klasické dámy a mění pouze podmínku vítězství – vyhrává hráč, který ztratí všechny své kameny a dámy.
+- **Důvod:** Odstranit neúplný a nepřesný popis těchto dvou variant a zabránit jejich záměně s Českou dámou.
+- **Dotčené soubory:** docs/RULES_CLASSIC.md, docs/RULES_GIVEAWAY.md, docs/GAME_VARIANTS.md, docs/ROADMAP.md
+- **Omezení:** Zdroj neurčuje začínající stranu Klasické dámy ani některé procedurální detaily vícenásobného braní. Tyto údaje zůstávají výslovně nevyřešené a nebyly domyšleny. Herní enginy ani testy se touto dokumentační změnou neměnily.
+- **Ověření:** Zápisy dokumentace potvrzeny odpověďmi GitHub API. Automatické testy a nasazení zatím nebyly ověřeny.
+- **Commity pravidel:** dcefc65a9c50345aff71e5f38c6cff38ae59bf50, ffd70078f22a47d81c3d416f68deba8dac8c4e9c
+- **Commit registru:** aac4864dcf9b086bc6e3055a84b6391f957f024f
 
 ## 5. Roadmapa – plánované a rozpracované oblasti
 
