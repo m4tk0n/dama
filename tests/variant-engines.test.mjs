@@ -54,7 +54,7 @@ test('Zapletal setup has eight pieces and black starts',()=>{
  assert.equal(state.variant,'czech-zapletal');
  assert.equal(state.currentPlayer,'black');
  assert.deepEqual(zapletal.getPieceCounts(state),{white:8,black:8});
- assert.ok(zapletal.getLegalMoves(state).some(m=>m.from===48));
+ assert.ok(zapletal.getLegalMoves(state).some(m=>m.from===49));
 });
 test('Zapletal engine does not invent a winner where end-game rules are unspecified',()=>{
  const state=stateWith(zapletal,[[6,0,'black']],'black');
