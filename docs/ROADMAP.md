@@ -203,6 +203,7 @@ Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v př
 
 ## 8. Související dokumentace
 
+- [Přehled herních variant a jejich architektura](GAME_VARIANTS.md)
 - [Požadavky projektu](REQUIREMENTS.md)
 - [Závazné pracovní pokyny pro AI](AI_WORK_INSTRUCTIONS.md)
 - [Prostředí produkčního serveru](SERVER_ENVIRONMENT.md)
