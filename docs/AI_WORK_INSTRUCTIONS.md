@@ -75,14 +75,33 @@ Pokud některý dokument nebo soubor není dostupný, AI to musí uvést a nesm�
 - Verze všech odloženě načítaných HTML, CSS a JS souborů se generují podle jejich vlastního `filemtime()`, aby se po změně obnovila cache.
 - Nové obrazovky nesmějí být přidávány zpět do `index.php` ani jejich logika do centrálního `app.js`. Výjimku tvoří pouze skutečně globální chování aplikace.
 
-## 5. Pravidla a architektura hry
+## 5. Varianty hry a architektura pravidel
 
-- Pravidla hry musí mít jeden autoritativní zdroj. Pro českou dámu 8×8 je jím `docs/RULES_CZECH.md`; implementací pravidel je `assets/js/game-engine.js`.
-- Herní logika, ověřování legálních tahů a stav partie musí být odděleny od vykreslování a uživatelského rozhraní.
-- Různá zobrazení hry nesmějí obsahovat vlastní kopie pravidel ani měnit výsledek herní logiky.
-- AI, lokální hra i případná online hra musí používat stejná autoritativní pravidla a stejný výpočet legálních tahů.
-- Každá změna pravidel musí být promítnuta do dokumentace, implementace a odpovídajících testů.
-- Pokud pravidla nejsou jednoznačně zdokumentována, AI si je nesmí domýšlet.
+Projekt obsahuje čtyři samostatné herní varianty:
+- Klasická dáma (classic).
+- Žravá dáma (giveaway).
+- Česká dáma (czech).
+- Mezinárodní dáma (international).
+
+Každá varianta musí mít vlastní úplný a autoritativní dokument pravidel, vlastní počáteční rozestavení a vlastní herní engine. Pravidla jedné varianty se nikdy nesmějí automaticky použít pro jinou variantu. Přehled variant, jejich stav a vazby na dokumentaci určuje docs/GAME_VARIANTS.md.
+
+### Oddělení společné a variantní části
+- Společné jsou pouze technické komponenty: vykreslení herní desky, vykreslení kamene, obecné ovládání, animace a prezentace stavu.
+- Vykreslovač přijímá rozměry desky, její konfiguraci a stav partie. Nesmí určovat legální tahy, povinné braní, proměnu ani konec hry.
+- Vzhled jednoho kamene je společný; renderer musí umět zobrazit jeho vlastnosti (strana, obyčejný kámen/dáma) podle dat varianty.
+- Každá varianta samostatně určuje rozměr a geometrii desky, aktivní políčka, počet hráčů a kamenů, počáteční rozestavení, pohyb, braní, proměnu, pokračování tahu, vítězství a remízu.
+- Každá varianta má vlastní engine a vlastní testovací sadu. Sdílet lze pouze obecné technické pomocné funkce, které samy neobsahují pravidlová rozhodnutí.
+- AI musí znát a používat pravidla právě zvolené varianty. Strategie a vyhodnocovací parametry AI se nesmějí zaměňovat mezi variantami.
+- Lokální hra, AI, ukládání a online hra musí vždy nést jednoznačný identifikátor varianty a používat její engine.
+- Uložená partie musí zachovat identifikátor varianty a verzi pravidel, podle kterých byla vytvořena.
+
+### Povinné rozdělení zdrojů
+- Dokumentace: docs/RULES_CLASSIC.md, docs/RULES_GIVEAWAY.md, docs/RULES_CZECH.md, docs/RULES_INTERNATIONAL.md.
+- Variantní implementace: assets/js/variants/{variant-id}/setup.js a engine.js.
+- Společné vykreslování a ovládání zůstává v assets/js/core/ nebo ve stávajících společných modulech podle aktuální struktury.
+- Stávající assets/js/game-engine.js je současná implementace české dámy; nesmí být považován za univerzální engine. Při oddělení variant se přesune nebo nahradí variantním modulem české dámy bez změny pravidel.
+
+Každá změna pravidel musí být promítnuta do dokumentu příslušné varianty, jejího enginu a testů. Pokud pravidla nejsou jednoznačně potvrzena, AI je nesmí domýšlet ani kopírovat z jiné varianty.
 
 ## 6. Testování a ověřování
 
