@@ -24,7 +24,7 @@ Hra proti počítači nabídne tři úrovně: Lehká, Střední a Těžká.
 
 ## 4. Architektura hry a variant
 
-- Projekt podporuje samostatné varianty classic, giveaway, czech a international.
+- Projekt podporuje všech 16 samostatných variant uvedených v `docs/GAME_VARIANTS.md`; každá má vlastní stabilní ID.
 - Každá varianta má vlastní autoritativní pravidla v samostatném dokumentu, vlastní počáteční rozestavení, vlastní herní engine a vlastní testy.
 - Pravidla, rozestavení ani výpočet legálních tahů se mezi variantami nesmějí sdílet. Sdílet lze pouze obecné technické pomocné funkce bez pravidlových rozhodnutí.
 - Společné zůstává vykreslení desky, vykreslení kamene, obecné ovládání, animace a zobrazení herního stavu.
@@ -86,9 +86,8 @@ Moje hry budou dostupné přihlášenému uživateli a mají zahrnovat jeho roze
 - Odloženě načítané soubory používají vlastní verzi odvozenou z `filemtime()`.
 
 ## 12. Otevřené technické otázky
-- Úplná a ověřená pravidla Klasické a Žravé dámy a jejich implementace.
-- Úplná pravidla Mezinárodní dámy 10×10 a její samostatný engine; současný náhled je pouze vizuální.
-- Přesné rozlišení pravidel a testů všech čtyř variant včetně podmínek remízy.
+- Úplná pravidla a samostatné enginy všech neimplementovaných variant podle `docs/GAME_VARIANTS.md`; současná Mezinárodní 10×10 je pouze vizuální náhled.
+- Přesné rozlišení pravidel a testů všech variant včetně podmínek remízy.
 - Pravidla remízy a opakování pozic české dámy – automatické rozpoznávání remízy zatím není implementováno.
 - Přesné názvy databázových proměnných v existujícím `.env`, kromě potvrzeného `table_prefix`.
 - Konečné databázové schéma a způsob migrací.
