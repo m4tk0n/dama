@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.009**
+**Aktuální projektová verze: 01.00.010**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -94,6 +94,17 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Dotčené soubory:** `index.php`, `assets/css/app.css`, `assets/css/board-2d.css`, `assets/js/app.js`, `assets/js/board-2d.js`, `install/README.md`, `docs/REQUIREMENTS.md`, `docs/AI_WORK_INSTRUCTIONS.md`, `docs/ROADMAP.md`
 - **Ověření:** GitHub API potvrdilo zápisy do `main`. Lokálně prošla kontrola syntaxe `php -l index.php`, `node --check assets/js/app.js` a `node --check assets/js/board-2d.js`. GitHub Actions: FTP synchronizace proběhla úspěšně, ale následný krok kontroly serverového diagnostického endpointu selhal; živé zobrazení proto není potvrzeno. Herní tahy, pravidla a AI zatím nejsou implementovány.
 - **Commity:** `cc36d2aae472b129c048e82f6e7eb8457faa9caf`, `906ae6223519d9561f92fdfe14529f83db33c467`, `fc368e4590eadf2829f4b85899981faec8973c8d`, `6f9ce1a48efca7241a979a28947267e6cfd595da`, `c7fb3a9fffda1c836a230695b4b5c673200e8bd6`, `abaac27ab7330c2a2a976c5cc305ae23f00564c9`, `63f77b122a8c22b05e46bb0334db9c85ae3c875a`, `dea4c452bb10807906b99787cbe75442ed819684`, `3ba913c672fe801f60af457a0f505cd70c2eebaa`, `f0ba880a3d57bb9e87e8d84cb724b02978234ff3`, `6509fb5c5b8952e9746159c2915ddc8755d6dcb5`
+
+### 01.00.010 – Přepis pravidel variant dostupných na české Wikipedii
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Do samostatných dokumentů pravidel byly přeneseny informace z článku české Wikipedie pro Klasickou, Žravou, Českou podle ČFD, Českou dle Zapletala, Anglickou, Mezinárodní, Brazilskou a Španělskou dámu. U každé varianty je odděleno, co zdroj skutečně uvádí a co v něm chybí. Registr variant a požadavky byly opraveny tak, aby neoznačovaly pouhý seznam názvů za úplná pravidla.
+- **Důvod:** Mít pravidla z dostupného zdroje zapsaná v projektu a zabránit domýšlení údajů, které článek neobsahuje.
+- **Dotčené soubory:** `docs/RULES_CLASSIC.md`, `docs/RULES_GIVEAWAY.md`, `docs/RULES_CZECH.md`, `docs/RULES_CZECH_ZAPLETAL.md`, `docs/RULES_ENGLISH.md`, `docs/RULES_INTERNATIONAL.md`, `docs/RULES_BRAZILIAN.md`, `docs/RULES_SPANISH.md`, `docs/GAME_VARIANTS.md`, `docs/REQUIREMENTS.md`, `docs/ROADMAP.md`
+- **Zdroj:** https://cs.wikipedia.org/wiki/Dáma_(desková_hra)
+- **Ověření:** Obsah článku byl zkontrolován včetně oddílů pro osm variant s pravidlovým popisem a oddílu „Další varianty“, který uvádí pouze názvy. Byla provedena kontrola zápisů dokumentace do větve `main`. Automatické testy a deployment této dokumentační změny zatím nebyly ověřeny.
+- **Commity pravidel:** `f9a4212f905df05998877246e0e92c13f3e49e19`, `4549b8f908ef90cdecc8053afa9ca358e44cc0a5`, `df12549730a2dc589a69099c36b06d07a4e008a6`, `8e315be49172edc44f42194a726f86d4224f7dce`, `92f61153f3d4b1df6b03c349243a48d32a056520`, `5b15ace2e5205fe62e2f74397a41b6860acd0e4b`, `945f644335d0d6e97ed18248eabd3cefef000a19`, `e5ccfde7418dce9fe5b30e1880efad9867ec68dc`
 
 ## 5. Roadmapa – plánované a rozpracované oblasti
 
