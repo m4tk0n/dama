@@ -86,7 +86,7 @@ Moje hry budou dostupné přihlášenému uživateli a mají zahrnovat jeho roze
 - Odloženě načítané soubory používají vlastní verzi odvozenou z `filemtime()`.
 
 ## 12. Otevřené technické otázky
-- Úplná pravidla a samostatné enginy všech neimplementovaných variant podle `docs/GAME_VARIANTS.md`; současná Mezinárodní 10×10 je pouze vizuální náhled.
+- Úplná pravidla a samostatné enginy všech neimplementovaných variant podle `docs/GAME_VARIANTS.md`. Česká Wikipedie podrobněji popisuje pouze prvních osm variant katalogu; dalších osm názvů pouze vyjmenovává. Stručné odlišnosti z Wikipedie je nutné doplnit o úplná pravidla před implementací. Mezinárodní 10×10 je zatím pouze vizuální náhled.
 - Přesné rozlišení pravidel a testů všech variant včetně podmínek remízy.
 - Pravidla remízy a opakování pozic české dámy – automatické rozpoznávání remízy zatím není implementováno.
 - Přesné názvy databázových proměnných v existujícím `.env`, kromě potvrzeného `table_prefix`.
