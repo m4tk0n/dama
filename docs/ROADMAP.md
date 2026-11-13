@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.004**
+**Aktuální projektová verze: 01.00.005**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -113,6 +113,16 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-010 | Nasazení | Ověřit bezpečné automatické nasazení na Webzdarma bez přepsání `.env` | PLÁN |
 
 ## 6. Záznamy významných změn
+
+### 01.00.005 – Stejné rozměry všech políček 2D desky
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** 2D deska má explicitně definovaných osm stejně vysokých řad i osm stejně širokých sloupců. Výška desky se odvozuje od její šířky pomocí poměru stran 1:1; výška okolního prostoru ji neroztahuje.
+- **Důvod:** Zajistit, aby všech 64 políček bylo přesně čtvercových na mobilu i desktopu.
+- **Dotčené soubory:** `assets/css/board-2d.css`, `docs/REQUIREMENTS.md`, `docs/ROADMAP.md`
+- **Ověření:** Čeká na kontrolu GitHub Actions po commitu.
+- **Commity:** CSS `fae4b0cafa2cb6a956dd28356f51da7167bb0c9b`, požadavky `518eaa1e4372b6265443c247d46a7e2228478b48`
 
 Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v případě chyby se přidá opravný záznam.
 
