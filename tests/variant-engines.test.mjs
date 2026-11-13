@@ -29,6 +29,29 @@ test('classic capture is mandatory and a flying queen may land beyond a victim',
  assert.ok(moves.some(m=>m.to===35&&m.captured===26));
  assert.ok(moves.some(m=>m.to===44&&m.captured===26));
 });
+test('classic man may capture only forward',()=>{
+ const state=stateWith(classic,[[4,3,'white'],[3,2,'black']]);
+ assert.deepEqual(classic.getLegalMoves(state),[]);
+});
+test('classic man may not reverse direction during a multiple capture',()=>{
+ const state=stateWith(classic,[[2,1,'white'],[3,2,'black'],[3,4,'black']]);
+ const first=classic.getLegalMoves(state).find(m=>m.from===17&&m.to===35);
+ assert.ok(first);
+ const result=play(classic,state,first.from,first.to);
+ assert.equal(result.ok,true);
+ assert.equal(result.turnFinished,true);
+ assert.equal(state.pending,null);
+ assert.equal(state.currentPlayer,'black');
+ assert.equal(state.board[35]?.player,'white');
+ assert.equal(state.board[26],null);
+ assert.equal(state.board[28]?.player,'black');
+});
+test('classic queen may capture forward and backward',()=>{
+ const forward=stateWith(classic,[[2,1,'white',true],[3,2,'black']]);
+ const backward=stateWith(classic,[[4,3,'white',true],[3,2,'black']]);
+ assert.ok(classic.getLegalMoves(forward).some(m=>m.from===17&&m.captured===26));
+ assert.ok(classic.getLegalMoves(backward).some(m=>m.from===35&&m.captured===26));
+});
 test('classic gives victory to the player who takes all opposing pieces',()=>{
  const state=stateWith(classic,[[2,1,'white'],[3,2,'black']]);
  const result=play(classic,state,17,35);
