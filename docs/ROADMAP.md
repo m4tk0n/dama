@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.007**
+**Aktuální projektová verze: 01.00.008**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -111,8 +111,19 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-008 | AI – učení | Připravit sběr partií, self-play, trénování, váhy a měření výkonnosti | PLÁN |
 | R-009 | Testování | Zavést automatické testy pravidel, herní logiky, API a regresí | PLÁN |
 | R-010 | Nasazení | Ověřit bezpečné automatické nasazení na Webzdarma bez přepsání `.env` | PLÁN |
+| R-011 | Variantní architektura | Oddělit Klasickou, Žravou, Českou a Mezinárodní dámu: samostatná pravidla, rozestavení, enginy a testy; sdílet pouze vykreslení desky, kamenů a obecné ovládání | ROZPRACOVÁNO |
 
 ## 6. Záznamy významných změn
+
+### 01.00.008 – Oddělení čtyř herních variant
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Architektura projektu je nově výslovně rozdělena na čtyři samostatné varianty: Klasická, Žravá, Česká a Mezinárodní dáma. Každá varianta musí mít vlastní pravidla, počáteční rozestavení, herní engine a testy. Společné zůstává pouze technické vykreslení desky, vzhled kamenů, obecné ovládání, animace a prezentace stavu.
+- **Důvod:** Zabránit přenášení pravidel jedné varianty do jiné a umožnit jejich nezávislý vývoj.
+- **Dotčené soubory:** docs/GAME_VARIANTS.md, docs/AI_WORK_INSTRUCTIONS.md, docs/REQUIREMENTS.md, docs/ROADMAP.md
+- **Ověření:** Provedena kontrola návaznosti dokumentace a aktuální implementace. Herní kód zatím nebyl rozdělen do variantních modulů; současný assets/js/game-engine.js zůstává enginem české dámy. Klasická a Žravá pravidla je nutné ještě přesně specifikovat. Automatické testy a nasazení této dokumentační změny budou ověřeny po commitu.
+- **Commit:** doplní se po vytvoření commitu.
 
 ### 01.00.007 – Interaktivní česká dáma 8×8 a herní engine
 
