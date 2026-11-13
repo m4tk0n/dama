@@ -5,7 +5,7 @@ const at=(r,c)=>r*SIZE+c,coords=i=>[Math.floor(i/SIZE),i%SIZE];
 const forward=p=>p==='white'?1:-1,opponent=p=>p==='white'?'black':'white';
 const crownRow=p=>p==='white'?SIZE-1:0;
 export function createInitialState(){
- return {variant:setup.variantId,rulesVersion:setup.rulesVersion,size:SIZE,board:setup.createInitialBoard(),currentPlayer:setup.startingPlayer,selected:null,pending:null,gameOver:false,winner:null,draw:false,lastMove:null};
+ return {variant:setup.variantId,rulesVersion:setup.rulesVersion,size:SIZE,board:setup.createInitialBoard(),currentPlayer:setup.startingPlayer,selected:null,pending:null,gameOver:false,winner:null,draw:false,blocked:false,lastMove:null};
 }
 function captureOptions(board,index,captured=[]){
  const piece=board[index];if(!piece)return [];
@@ -59,13 +59,12 @@ function endTurn(state,from,to,captured){
  if(piece&&!piece.king&&coords(to)[0]===crownRow(piece.player))piece.king=true;
  state.pending=null;state.selected=null;state.lastMove={from,to,captured:[...captured]};
  state.currentPlayer=opponent(state.currentPlayer);
- if(!state.board.some(p=>p?.player===state.currentPlayer)||getLegalMoves({...state,gameOver:false}).length===0){
-  state.gameOver=true;state.winner=opponent(state.currentPlayer);
- }
+ // Pravidla této varianty výslovně nepotvrzují konec partie ani remízu.
+ state.blocked=!state.board.some(p=>p?.player===state.currentPlayer)||getLegalMoves({...state,gameOver:false}).length===0;
  return state;
 }
 export function playMove(state,move){
- if(state.gameOver)return {ok:false,state,reason:'Partie již skončila.'};
+ if(state.gameOver||state.blocked)return {ok:false,state,reason:'Další tah nelze určit bez potvrzených pravidel konce partie.'};
  const legal=getLegalMoves(state).find(m=>m.from===move.from&&m.to===move.to);
  if(!legal)return {ok:false,state,reason:'Tento tah není povolený.'};
  const piece=state.board[legal.from];state.board[legal.from]=null;state.board[legal.to]=piece;
