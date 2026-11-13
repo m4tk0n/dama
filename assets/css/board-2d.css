@@ -1,0 +1,5 @@
+.board-2d{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));width:100%;aspect-ratio:1;overflow:hidden;border:clamp(3px,1vw,6px) solid #8c6940;border-radius:.35rem;background:#e8d7b8;box-shadow:0 1rem 2.5rem rgb(0 0 0 / 28%)}
+.board-cell{position:relative;display:grid;place-items:center;min-width:0;padding:5%;border:0;border-radius:0;background:#e8d7b8}.board-cell.is-dark{background:#73533b}
+.board-piece{width:78%;aspect-ratio:1;border:2px solid rgb(255 255 255 / 45%);border-radius:50%;box-shadow:inset 0 -.25rem .3rem rgb(0 0 0 / 25%),0 .15rem .25rem rgb(0 0 0 / 35%)}
+.board-piece.is-light{background:radial-gradient(circle at 35% 28%,#fff 0,#e8e8e8 48%,#aeb6c2 100%)}.board-piece.is-dark-piece{background:radial-gradient(circle at 35% 28%,#68778c 0,#263447 55%,#101827 100%)}
+@media(max-width:380px){.board-2d{border-width:3px}.board-piece{border-width:1px}}
