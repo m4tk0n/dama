@@ -33,12 +33,14 @@ Dalších osm herních názvů (Turecká/Keny, Rohová, Dvacet proti deseti, St�
 
 ## 3. Zásadní pravidlo výběru
 
-Všech 16 variant je viditelných a lze je vybrat při vytváření místní hry. Výběr však neznamená, že je hra implementována.
+V katalogu je evidováno všech 16 variant, ale ve výběru nové hry jsou aktivní pouze varianty s dostupným samostatným herním enginem.
 
-- Hratelné jsou Klasická, Žravá, Česká podle ČFD a Česká dle Zapletala; obě české varianty podporují také hru proti vlastní AI.
-- Mezinárodní dáma 10×10 je pouze statický vizuální náhled.
-- U ostatních variant se zobrazí informace, že se připravují; nesmějí se spustit s enginem jiné varianty.
-- Neimplementovaná varianta nesmí být tiše nahrazena českou dámou.
+- Aktivní a volitelné jsou Klasická, Žravá, Česká podle ČFD a Česká dle Zapletala.
+- Klasická a Žravá mají samostatné enginy v1; některé procedurální detaily jejich pravidel zůstávají k ověření.
+- Obě české varianty podporují také hru proti vlastní AI.
+- Anglická, Mezinárodní, Brazilská, Španělská, Turecká (Keny), Rohová, Dvacet proti deseti, Středověká bitva, Jezdecká, Dám, Kanadská a Dvojitá jsou ve výběru dočasně deaktivované. Nelze je zvolit ani spustit z obrazovky vytvoření hry.
+- Mezinárodní dáma 10×10 má pouze technický vizuální náhled; ten není součástí nabídky hratelných variant.
+- Deaktivovaná varianta se znovu aktivuje až po dokončení a otestování vlastních pravidel, rozestavení a enginu. Nesmí být tiše nahrazena enginem jiné varianty.
 - Výchozí předvolbou zůstává Česká dáma podle ČFD.
 
 ## 4. Společné a samostatné části
