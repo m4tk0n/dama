@@ -1,94 +1,57 @@
 # Herní varianty projektu Dáma
 
-Tento dokument je centrální registr variant. Neobsahuje náhradní kopii jejich pravidel; ukazuje, kde je autoritativní zdroj pravidel, implementace a testy.
+Tento dokument je centrální registr všech variant zahrnutých do výběru nové hry. Každá varianta má vlastní identifikátor a vlastní autoritativní pravidla, rozestavení, engine a testy.
 
-## 1. Základní architektonické pravidlo
+## 1. Seznam variant
 
-Projekt obsahuje čtyři odlišné hry:
+Seznam vychází z pojmenovaných variant uvedených v českém článku Wikipedie „Dáma (desková hra)“. „Dámová notace“ a obecný pojem „další varianty“ nejsou samostatné hry, proto nejsou nabídkami. Všechny konkrétně pojmenované hry z článku jsou zahrnuty.
 
-| ID | Název | Autoritativní pravidla | Stav |
+| ID | Název ve výběru | Pravidla | Stav implementace |
 |---|---|---|---|
-| classic | Klasická dáma | docs/RULES_CLASSIC.md | PLÁN – pravidla je nutné přesně specifikovat |
-| giveaway | Žravá dáma | docs/RULES_GIVEAWAY.md | PLÁN – pravidla je nutné přesně specifikovat |
-| czech | Česká dáma | docs/RULES_CZECH.md | ROZPRACOVÁNO – pravidla zdokumentována, základní engine existuje |
-| international | Mezinárodní dáma | docs/RULES_INTERNATIONAL.md | PLÁN – současná deska 10×10 je pouze vizuální náhled |
+| classic | Klasická dáma | docs/RULES_CLASSIC.md | Osnova, nehratelná |
+| giveaway | Žravá dáma | docs/RULES_GIVEAWAY.md | Osnova, nehratelná |
+| czech-8 | Česká dáma podle ČFD | docs/RULES_CZECH.md | Základní engine 8×8 |
+| czech-zapletal | Česká dáma dle Zapletala | docs/RULES_CZECH_ZAPLETAL.md | Osnova, nehratelná |
+| english | Anglická dáma | docs/RULES_ENGLISH.md | Osnova, nehratelná |
+| international-10 | Mezinárodní dáma | docs/RULES_INTERNATIONAL.md | Pouze vizuální náhled 10×10 |
+| brazilian | Brazilská dáma | docs/RULES_BRAZILIAN.md | Osnova, nehratelná |
+| spanish | Španělská dáma | docs/RULES_SPANISH.md | Osnova, nehratelná |
+| turkish | Turecká (Keny) dáma | docs/RULES_TURKISH.md | Osnova, nehratelná |
+| corner | Rohová dáma | docs/RULES_CORNER.md | Osnova, nehratelná |
+| twenty-ten | Dvacet proti deseti | docs/RULES_TWENTY_TEN.md | Osnova, nehratelná |
+| medieval-battle | Středověká bitva | docs/RULES_MEDIEVAL_BATTLE.md | Osnova, nehratelná |
+| knight | Jezdecká dáma | docs/RULES_KNIGHT.md | Osnova, nehratelná |
+| dam | Dám | docs/RULES_DAM.md | Název převzat doslova z Wikipedie; pravidla nutno ověřit |
+| canadian | Kanadská dáma | docs/RULES_CANADIAN.md | Osnova, nehratelná |
+| double | Dvojitá dáma | docs/RULES_DOUBLE.md | Osnova, nehratelná |
 
-Každá varianta musí mít vlastní úplný dokument pravidel, vlastní definici počátečního rozestavení, vlastní engine a vlastní automatické testy. Žádná varianta nesmí používat pravidla jiné varianty jako výchozí nebo nouzovou náhradu.
+## 2. Zásadní pravidlo výběru
 
-## 2. Co je společné
+Všech 16 variant je viditelných a lze je vybrat při vytváření místní hry. Výběr však neznamená, že je hra implementována.
 
-Pouze technické a prezentační části:
+- Česká dáma podle ČFD je jediná aktuálně hratelná varianta.
+- Mezinárodní dáma 10×10 je pouze statický vizuální náhled.
+- U ostatních variant se zobrazí informace, že se připravují; nesmějí se spustit s enginem jiné varianty.
+- Neimplementovaná varianta nesmí být tiše nahrazena českou dámou.
+- Výchozí předvolbou zůstává Česká dáma podle ČFD.
 
-- vykreslení desky libovolné podporované geometrie;
-- vykreslení jednoho kamene a jeho vizuálních vlastností;
-- obecné ovládání (výběr kamene, požadavek na tah, zobrazení cílových polí);
-- animace pohybu a vizualizace výsledku tahu;
-- společné UI, zvukové a přístupnostní funkce.
+## 3. Společné a samostatné části
 
-Společný renderer nesmí obsahovat pravidla pohybu, braní, povinného braní, proměny, pokračování tahu, vítězství ani remízy. Nesmí odvozovat pravidla z rozměru desky.
+Společné zůstává pouze vykreslení desky, vykreslení jednoho kamene, obecné ovládání, animace a prezentace stavu. Každá varianta samostatně určuje rozměr a geometrii desky, aktivní pole, počet a počáteční rozmístění kamenů, začínající stranu, pohyb, braní, proměnu, pokračování tahu, vítězství, remízu a strategii AI.
 
-## 3. Co je samostatné pro každou variantu
+Renderer nikdy nevyhodnocuje pravidla ani legální tahy. Dostává konfiguraci desky a stav hry od enginu vybrané varianty.
 
-Každá varianta nezávisle definuje:
+## 4. Cílová struktura enginů
 
-- rozměry desky, tvar a orientaci;
-- aktivní/herní políčka;
-- počet hráčů a počet kamenů;
-- počáteční rozestavení a stranu, která začíná;
-- druhy kamenů a jejich proměnu;
-- pohyb obyčejných kamenů a dam;
-- braní, povinnost braní, prioritu a volbu mezi sekvencemi;
-- pravidla vícenásobného braní a odstraňování braných kamenů;
-- podmínky ukončení, vítězství a remízy;
-- variantní nastavení AI a její strategické vyhodnocování.
+Každá varianta bude mít vlastní modul `setup.js` a `engine.js` pod `assets/js/variants/{id}/`. Společné vykreslování a ovládání zůstává ve společných modulech. Stávající `assets/js/game-engine.js` je pouze současný engine české dámy podle ČFD, nikoli univerzální engine.
 
-## 4. Doporučené rozdělení implementace
+## 5. Testování a AI
 
-```text
-assets/js/
-├── core/
-│   ├── board-renderer.js
-│   ├── piece-renderer.js
-│   └── game-controller.js
-└── variants/
-    ├── classic/
-    │   ├── setup.js
-    │   └── engine.js
-    ├── giveaway/
-    │   ├── setup.js
-    │   └── engine.js
-    ├── czech/
-    │   ├── setup.js
-    │   └── engine.js
-    └── international/
-        ├── setup.js
-        └── engine.js
-```
+Každá varianta musí mít vlastní testy rozestavení, pohybu, braní, vícenásobných sekvencí, proměny, konce hry a remízy podle svých pravidel. AI musí používat legální tahy a strategii varianty, kterou uživatel vybral. Tréninkové modely a váhy se mezi variantami nesmějí zaměňovat.
 
-Toto je cílové rozdělení, nikoliv tvrzení, že uvedené moduly již existují. Stávající assets/js/game-engine.js je současná implementace české dámy. Při migraci se jeho pravidla musí zachovat a přesunout pod variantu czech; nesmí se změnit na obecný engine obsahující skryté přepínače pravidel.
+## 6. Zdroj katalogu
 
-Každý engine musí poskytovat jasné rozhraní pro vytvoření počátečního stavu, získání legálních tahů, provedení tahu a vyhodnocení stavu partie. Konkrétní implementace těchto operací zůstává variantní.
+Česká Wikipedie, „Dáma (desková hra)“:
+https://cs.wikipedia.org/wiki/Dáma_(desková_hra)
 
-## 5. Výběr varianty a ukládání
-
-- Každá hra nese stabilní identifikátor varianty (classic, giveaway, czech, international).
-- Při vytvoření hry se načte pouze engine a konfigurace zvolené varianty.
-- Stav uložené partie obsahuje identifikátor varianty a verzi pravidel.
-- Při načtení partie se nesmí automaticky použít jiný engine, pokud původní varianta není dostupná.
-- 2D a 3D renderer zobrazují stejný stav hry; žádný renderer nesmí měnit pravidla.
-
-## 6. AI a testování
-
-- AI musí před rozhodnutím používat legální tahy enginu konkrétní varianty.
-- Každá varianta má vlastní testy počátečního rozestavení, pohybu, braní, vícenásobných sekvencí, proměny a konce hry podle svých pravidel.
-- Testy jedné varianty nesmějí být považovány za důkaz správnosti jiné varianty.
-- Vývoj a trénování AI zůstává oddělené v dama-ai-vyvoj/; produkční AI musí mít oddělené modely/strategie podle varianty.
-
-## 7. Závazné autoritativní dokumenty
-
-- Klasická dáma: docs/RULES_CLASSIC.md (osnova vytvořena, pravidla zatím neúplná).
-- Žravá dáma: docs/RULES_GIVEAWAY.md (osnova vytvořena, pravidla zatím neúplná).
-- Česká dáma: docs/RULES_CZECH.md.
-- Mezinárodní dáma: docs/RULES_INTERNATIONAL.md (osnova vytvořena, pravidla zatím neúplná).
-
-Dokumenty pro neimplementované varianty se nesmějí doplnit odhadem. Po ověření úplných pravidel se každý dokument stane jediným autoritativním zdrojem dané varianty.
+Stručný přehled Wikipedie nestačí k implementaci úplného enginu. Pravidla každé varianty se musí ověřit z odpovídajících autoritativních zdrojů.
