@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.002**
+**Aktuální projektová verze: 01.00.003**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -115,6 +115,16 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 ## 6. Záznamy významných změn
 
 Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v případě chyby se přidá opravný záznam.
+
+### 01.00.003 – Automatické verzování assetů podle filemtime
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Nahrazeno pevné \`$assetVersion\` verzováním podle času poslední změny konkrétního souboru pomocí PHP \`filemtime()\`. Verze se používá pro hlavní CSS a JavaScript i pro odloženě načítané CSS a ES modul 2D desky.
+- **Důvod:** Zajistit automatické obnovení cache pouze u změněných assetů a zabránit používání staré verze dynamicky importovaného modulu.
+- **Dotčené soubory:** \`index.php\`, \`assets/js/app.js\`, \`docs/ROADMAP.md\`
+- **Commity:** \`847100466e8fd5ca6a05f0da3584e81e3aaa9b9c\` (\`index.php\`), \`1152714277f674791722e2ae8285db2267a9fd47\` (\`assets/js/app.js\`)
+- **Ověření:** Zápisy do \`main\` potvrzeny. Kontrola PHP/JS syntaxe, GitHub Actions a živého načtení čeká na ověření.
 
 ### 01.00.000 – Zavedení roadmapy a verzování
 
