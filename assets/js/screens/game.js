@@ -64,11 +64,26 @@ export async function mount({root,state,versions}) {
   if(source!==null){
    const move=engine.getLegalMoves(game).find(item=>item.from===source&&item.to===index);
    if(move){
+    const sourcePiece=board.querySelector('[data-cell-index="'+move.from+'"] .board-piece');
+    const sourceRect=sourcePiece?.getBoundingClientRect();
     const result=engine.playMove(game,move);
     if(result.ok){
      selected=game.pending?game.pending.pieceIndex:null;
      message=game.pending?'Pokračujte v braní stejnou figurkou.':'Tah dokončen.';
      render();
+     if(sourceRect){
+      const destinationPiece=board.querySelector('[data-cell-index="'+move.to+'"] .board-piece');
+      const destinationRect=destinationPiece?.getBoundingClientRect();
+      if(destinationPiece&&destinationRect){
+       destinationPiece.style.transition='none';
+       destinationPiece.style.transform='translate('+(sourceRect.left-destinationRect.left)+'px,'+(sourceRect.top-destinationRect.top)+'px)';
+       destinationPiece.getBoundingClientRect();
+       requestAnimationFrame(()=>{
+        destinationPiece.style.transition='';
+        destinationPiece.style.transform='';
+       });
+      }
+     }
     }
     return;
    }
