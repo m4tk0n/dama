@@ -1,6 +1,6 @@
 # Pravidla Klasické dámy
 
-<badge>NEÚPLNÉ – zatím neschváleno</badge>
+**STAV: NEÚPLNÉ – zatím neschváleno**
 
 Tento soubor je vyhrazen výhradně pravidlům varianty Klasická dáma. Nesmí se automaticky přebírat pravidla české, žravé ani mezinárodní dámy.
 
