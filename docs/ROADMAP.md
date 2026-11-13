@@ -124,7 +124,8 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 - **Dotčené soubory:** pages/create.html, assets/js/screens/game.js, docs/GAME_VARIANTS.md, docs/REQUIREMENTS.md, docs/AI_WORK_INSTRUCTIONS.md, docs/ROADMAP.md a samostatné osnovy pravidel nových variant.
 - **Zdroj katalogu:** https://cs.wikipedia.org/wiki/Dáma_(desková_hra)
 - **Ověření:** Automatické kontroly budou potvrzeny výsledkem GitHub Actions.
-- **Commit:** doplní se po zápisu.
+- **Commity:** `b63bc3b68e9648a9fe035a90bdf6f171666a9ff1` (výběr variant), `64e34c03f83030fb6630318fc0a2e95452b129a3` (ochrana proti použití nesprávného enginu), `1b97ef79595d339a23b66acba0b4adff5506dc0c` (registr), `8fdd15d6e54469c279017ff40b214d19c1ecf70f` (požadavky), `e5b854c73ffa74e17093d05ce1475ebb59b1ac87` (pokyny), `d59a8230383d70c09fe349899671b9ff6becb054` (roadmapa) a samostatné commity osnov pravidel.
+- **Ověření:** GitHub Actions run [43411252517](https://github.com/m4tk0n/dama/actions/runs/43411252517) úspěšně dokončil kontrolu syntaxe PHP/JavaScriptu, všech automatických testů, FTP synchronizaci a HTTP health check.
 
 ### 01.00.008 – Oddělení čtyř herních variant
 
