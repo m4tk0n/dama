@@ -1,6 +1,6 @@
 # Pravidla české dámy 8×8
 
-Tento dokument je autoritativním zdrojem pravidel první herní varianty projektu. Produkční herní engine, lokální hra, budoucí AI a online hra musí používat stejná pravidla. Vykreslování desky nesmí pravidla samostatně implementovat.
+Tento dokument je jediným autoritativním zdrojem pravidel varianty Česká dáma. Ostatní varianty mají vlastní samostatné dokumenty pravidel a vlastní enginy; pravidla z tohoto souboru se na ně nepřenášejí. Produkční herní engine, lokální hra, budoucí AI a online hra musí používat stejná pravidla. Vykreslování desky nesmí pravidla samostatně implementovat.
 
 ## 1. Deska a výchozí postavení
 
