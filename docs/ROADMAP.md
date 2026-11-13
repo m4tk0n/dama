@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.017**
+**Aktuální projektová verze: 01.00.018**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -117,6 +117,16 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 - **Ověření:** Zápisy dokumentace potvrzeny odpověďmi GitHub API. Automatické testy a nasazení zatím nebyly ověřeny.
 - **Commity pravidel:** dcefc65a9c50345aff71e5f38c6cff38ae59bf50, ffd70078f22a47d81c3d416f68deba8dac8c4e9c
 - **Commit registru:** aac4864dcf9b086bc6e3055a84b6391f957f024f
+
+### 01.00.018 – Deaktivovat nehotové varianty ve výběru
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO – změny zapsány do `main`; automatické ověření a nasazení čeká.
+- **Změna:** Ve výběru nové hry zůstávají aktivní pouze Klasická, Žravá, Česká podle ČFD a Česká dle Zapletala. Zbývajících 12 variant je viditelných, ale označených jako deaktivované pomocí atributu `disabled`. Logika vytvoření hry navíc povoluje pouze čtyři uvedená ID, takže deaktivovanou variantu nelze spustit ani předáním jejího ID.
+- **Důvod:** Uživatel nemá moci vybrat variantu, která zatím nemá použitelný samostatný engine.
+- **Dotčené soubory:** `pages/create.html`, `assets/js/screens/create.js`, `docs/GAME_VARIANTS.md`, `docs/REQUIREMENTS.md`, `docs/ROADMAP.md`.
+- **Ověření:** Změny jsou zapsány do `main`; GitHub Actions, automatické testy a FTP nasazení zatím čekají na výsledek.
+- **Commity:** `9bcc3d8aa29fae327a0e93a75093478e3baee75b`, `544a4e97a2267316c0edf8a1a9d4412139158d1e`, `90c8f8667ef8c82046936cfa3686f2cf8f9af4a8`, `39b563d66635108253cad6517f1b2f86e0c2a07d`.
 
 ### 01.00.017 – Připojit AI k oběma českým variantám
 
@@ -198,7 +208,7 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-008 | AI – učení | Připravit sběr partií, self-play, trénování, váhy a měření výkonnosti | PLÁN |
 | R-009 | Testování | Zavést automatické testy pravidel, herní logiky, API a regresí | PLÁN |
 | R-010 | Nasazení | Ověřit bezpečné automatické nasazení na Webzdarma bez přepsání `.env` | PLÁN |
-| R-011 | Variantní architektura | Všech 16 pojmenovaných variant z Wikipedie má samostatnou položku ve výběru a vlastní pravidla, rozestavení, engine a testy; sdílet pouze vykreslení desky, kamenů a obecné ovládání | ROZPRACOVÁNO |
+| R-011 | Variantní architektura | Všech 16 pojmenovaných variant je evidováno; ve výběru jsou aktivní jen čtyři varianty s vlastním enginem, ostatní jsou deaktivované do dokončení pravidel a testů | ROZPRACOVÁNO |
 
 ## 6. Záznamy významných změn
 
