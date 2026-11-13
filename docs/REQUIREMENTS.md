@@ -3,11 +3,11 @@
 Tento dokument shrnuje uživatelem potvrzené požadavky. Stav implementace se eviduje v `ROADMAP.md`; uvedení požadavku zde neznamená, že je hotový.
 
 ## 1. První herní verze
-- Projekt bude podporovat čtyři samostatné varianty: Klasická, Žravá, Česká a Mezinárodní dáma.
-- Každá varianta bude v nabídce samostatně identifikovaná a zpřístupněná až po dokončení a otestování vlastních pravidel, rozestavení a enginu.
-- Česká dáma 8×8 je současná implementovaná varianta.
-- Mezinárodní dáma 10×10 je zatím pouze vizuální testovací náhled; nesmí používat česká pravidla ani předstírat funkční hru.
-- Klasická a Žravá dáma zůstávají nedostupné, dokud nebudou jejich pravidla přesně zdokumentována a implementována.
+- Výběr místní hry obsahuje všech 16 pojmenovaných variant uvedených v článku Wikipedie „Dáma (desková hra)“: Klasická, Žravá, Česká podle ČFD, Česká dle Zapletala, Anglická, Mezinárodní, Brazilská, Španělská, Turecká (Keny), Rohová, Dvacet proti deseti, Středověká bitva, Jezdecká, Dám, Kanadská a Dvojitá dáma.
+- Každá položka má vlastní stabilní ID. Každá varianta bude skutečně hratelná až po dokončení a otestování vlastních pravidel, rozestavení a enginu.
+- Česká dáma podle ČFD 8×8 je současná implementovaná varianta.
+- Mezinárodní dáma 10×10 zůstává pouze vizuálním testovacím náhledem; nesmí používat česká pravidla ani předstírat funkční hru.
+- Ostatní varianty jsou viditelné a volitelné ve výběru, ale herní obrazovka musí jasně oznámit, že jejich engine ještě není implementován. Nesmí je tiše spustit s pravidly české dámy.
 - První grafické zobrazení bude 2D; v budoucnu bude možné přepnout na 3D.
 
 ## 2. Obtížnost AI
