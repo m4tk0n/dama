@@ -123,7 +123,9 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 - **Důvod:** Zabránit přenášení pravidel jedné varianty do jiné a umožnit jejich nezávislý vývoj.
 - **Dotčené soubory:** docs/GAME_VARIANTS.md, docs/AI_WORK_INSTRUCTIONS.md, docs/REQUIREMENTS.md, docs/ROADMAP.md
 - **Ověření:** Provedena kontrola návaznosti dokumentace a aktuální implementace. Herní kód zatím nebyl rozdělen do variantních modulů; současný assets/js/game-engine.js zůstává enginem české dámy. Klasická a Žravá pravidla je nutné ještě přesně specifikovat. Automatické testy a nasazení této dokumentační změny budou ověřeny po commitu.
-- **Commit:** doplní se po vytvoření commitu.
+- **Commity:** `0ccbd3d6cb97b38d13c28624616933a859a9fab9`, `7535d52f5c8fd5301428f6d75daa4163b5144829`, `f3c6c81f0cba82b8789350e4b1fa6bec97a5a480`, `07651f25e8dae86a7eb19812002c6d6a76a16e56`, `3414834404d7438db5d79d45838554cac3a2a456`, `eb663b768fe7e60f68fab43a4f8a2358946a0e8f`, `12b66a4ad2142961f0306728ef907a5c04a36861`, `37ba905ca1ef6a5a5d0523795b9f6d87f476d2fd`
+- **Ověření dokumentace:** Znovu načteny všechny čtyři variantní soubory pravidel a registr variant z `main`; tři nové soubory jsou záměrně označené jako neúplné. Žádná pravidla nebyla domyšlena.
+- **Testy:** Nebyl měněn aplikační kód; automatické herní testy nebyly pro tuto dokumentační změnu spuštěny.
 
 ### 01.00.007 – Interaktivní česká dáma 8×8 a herní engine
 
