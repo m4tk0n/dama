@@ -119,7 +119,7 @@ Nejnovější záznam patří vždy nahoru. Starší záznamy se nemažou; v př
 ### 01.00.003 – Automatické verzování assetů podle filemtime
 
 - **Datum:** 2026-11-13
-- **Stav:** ROZPRACOVÁNO
+- **Stav:** HOTOVO
 - **Změna:** Nahrazeno pevné \`$assetVersion\` verzováním podle času poslední změny konkrétního souboru pomocí PHP \`filemtime()\`. Verze se používá pro hlavní CSS a JavaScript i pro odloženě načítané CSS a ES modul 2D desky.
 - **Důvod:** Zajistit automatické obnovení cache pouze u změněných assetů a zabránit používání staré verze dynamicky importovaného modulu.
 - **Dotčené soubory:** \`index.php\`, \`assets/js/app.js\`, \`docs/ROADMAP.md\`
