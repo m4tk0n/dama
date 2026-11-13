@@ -77,11 +77,8 @@ Pokud některý dokument nebo soubor není dostupný, AI to musí uvést a nesm�
 
 ## 5. Varianty hry a architektura pravidel
 
-Projekt obsahuje čtyři samostatné herní varianty:
-- Klasická dáma (classic).
-- Žravá dáma (giveaway).
-- Česká dáma (czech).
-- Mezinárodní dáma (international).
+Projekt obsahuje 16 samostatných herních variant evidovaných v `docs/GAME_VARIANTS.md`: Klasická, Žravá, Česká podle ČFD, Česká dle Zapletala, Anglická, Mezinárodní, Brazilská, Španělská, Turecká (Keny), Rohová, Dvacet proti deseti, Středověká bitva, Jezdecká, Dám, Kanadská a Dvojitá dáma.
+Každá položka ve výběru má vlastní stabilní ID. Neimplementované varianty mohou být vybratelné, ale nesmějí se spustit s enginem jiné varianty.
 
 Každá varianta musí mít vlastní úplný a autoritativní dokument pravidel, vlastní počáteční rozestavení a vlastní herní engine. Pravidla jedné varianty se nikdy nesmějí automaticky použít pro jinou variantu. Přehled variant, jejich stav a vazby na dokumentaci určuje docs/GAME_VARIANTS.md.
 
@@ -96,7 +93,7 @@ Každá varianta musí mít vlastní úplný a autoritativní dokument pravidel,
 - Uložená partie musí zachovat identifikátor varianty a verzi pravidel, podle kterých byla vytvořena.
 
 ### Povinné rozdělení zdrojů
-- Dokumentace: docs/RULES_CLASSIC.md, docs/RULES_GIVEAWAY.md, docs/RULES_CZECH.md, docs/RULES_INTERNATIONAL.md.
+- Dokumentace: každý záznam varianty v docs/GAME_VARIANTS.md odkazuje na vlastní soubor docs/RULES_*.md.
 - Variantní implementace: assets/js/variants/{variant-id}/setup.js a engine.js.
 - Společné vykreslování a ovládání zůstává v assets/js/core/ nebo ve stávajících společných modulech podle aktuální struktury.
 - Stávající assets/js/game-engine.js je současná implementace české dámy; nesmí být považován za univerzální engine. Při oddělení variant se přesune nebo nahradí variantním modulem české dámy bez změny pravidel.
