@@ -77,7 +77,7 @@ Pokud některý dokument nebo soubor není dostupný, AI to musí uvést a nesm�
 
 ## 5. Pravidla a architektura hry
 
-- Pravidla hry musí mít jeden autoritativní zdroj.
+- Pravidla hry musí mít jeden autoritativní zdroj. Pro českou dámu 8×8 je jím `docs/RULES_CZECH.md`; implementací pravidel je `assets/js/game-engine.js`.
 - Herní logika, ověřování legálních tahů a stav partie musí být odděleny od vykreslování a uživatelského rozhraní.
 - Různá zobrazení hry nesmějí obsahovat vlastní kopie pravidel ani měnit výsledek herní logiky.
 - AI, lokální hra i případná online hra musí používat stejná autoritativní pravidla a stejný výpočet legálních tahů.
