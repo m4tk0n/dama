@@ -1,40 +1,17 @@
 # Pravidla Žravé dámy
 
-**STAV: NEÚPLNÉ – zatím neschváleno**
+**Zdrojový rozsah:** článek české Wikipedie popisuje Žravou dámu jako variantu klasické dámy s obrácenou podmínkou vítězství.
 
-Tento soubor je vyhrazen výhradně pravidlům varianty Žravá dáma. Nesmí se automaticky přebírat pravidla české, klasické ani mezinárodní dámy. Zvláštní pozornost musí být věnována podmínkám vítězství a případným specifickým pravidlům braní.
+## 1. Základ hry
+- Žravá dáma je varianta klasické dámy.
+- Pravidla pohybu a braní vycházejí z Klasické dámy.
+- Konkrétní rozměr desky, počet kamenů a počáteční rozestavení článek u této varianty znovu neopakuje; je proto nutné je převzít z pravidel Klasické dámy, pokud nebude určen jiný autoritativní zdroj.
 
-Dokud nebudou jednotlivé body ověřeny a potvrzeny, varianta nesmí být implementována jako hratelná.
+## 2. Podmínka vítězství
+- Vyhrává hráč, který ztratil všechny své kameny a dámy.
 
-## 1. Deska a počáteční rozestavení
-- Rozměr desky: NEOVĚŘENO
-- Aktivní políčka: NEOVĚŘENO
-- Počet kamenů na hráče: NEOVĚŘENO
-- Počáteční rozmístění: NEOVĚŘENO
-- Hráč, který začíná: NEOVĚŘENO
+## 3. Co zdroj výslovně neurčuje
+Článek neuvádí zvláštní pravidla remízy ani případné další odchylky od klasické dámy. Nesmějí se domýšlet. Před implementací je nutné potvrdit, zda se remízy a všechny procedurální detaily beze změny přebírají z Klasické dámy.
 
-## 2. Pohyb obyčejného kamene
-- Směr a délka tahu: NEOVĚŘENO
-- Pohyb při braní: NEOVĚŘENO
-
-## 3. Dáma
-- Způsob proměny: NEOVĚŘENO
-- Pohyb dámy: NEOVĚŘENO
-- Braní dámou: NEOVĚŘENO
-
-## 4. Braní a pokračování tahu
-- Povinnost braní: NEOVĚŘENO
-- Přednost nebo výběr mezi braními: NEOVĚŘENO
-- Vícenásobné braní: NEOVĚŘENO
-- Odstraňování braných kamenů: NEOVĚŘENO
-
-## 5. Konec partie
-- Přesná podmínka vítězství pro Žravou dámu: NEOVĚŘENO
-- Podmínky remízy: NEOVĚŘENO
-
-## 6. Zdroje a schválení
-- Ověřený zdroj pravidel: DOPLNIT
-- Datum ověření: DOPLNIT
-- Rozdíly oproti ostatním variantám: DOPLNIT
-
-Tento dokument je zatím pouze samostatnou osnovou pravidel, nikoliv úplnou specifikací. Žádný engine nesmí chybějící body domýšlet.
+## Zdroj
+- Česká Wikipedie – [Dáma (desková hra)](https://cs.wikipedia.org/wiki/Dáma_(desková_hra)), oddíl „Žravá dáma“.
