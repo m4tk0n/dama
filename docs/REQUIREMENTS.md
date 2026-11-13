@@ -13,6 +13,7 @@ Hra proti počítači nabídne tři úrovně: Lehká, Střední a Těžká.
 
 ## 3. Zobrazení a CSS
 - 2D a 3D vykreslování i jejich styly musí být oddělené.
+- V 2D desce 8×8 musí mít všechna políčka shodnou šířku i výšku. Deska zachovává poměr stran 1:1; její výška se odvozuje od dostupné šířky, nikoli od výšky okolního prostoru.
 - Společné styly patří do společné vrstvy pouze tehdy, pokud jsou skutečně sdílené.
 - Nepřidávat další CSS soubory kvůli jednotlivým opravám. Přednostně upravovat existující soubory a odstraňovat duplicity a nepoužívaná pravidla.
 - Nový CSS soubor je přípustný pouze pro jasně oddělenou funkční oblast nebo samostatně načítanou část.
