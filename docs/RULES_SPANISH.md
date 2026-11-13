@@ -1,28 +1,19 @@
 # Pravidla – Španělská dáma
 
-**STAV: NEÚPLNÉ – varianta zatím není schválena ani hratelná.**
+**Zdrojový rozsah:** stručný popis v českém článku Wikipedie. Článek výslovně uvádí následující parametry a priority braní.
 
-Článek uvádí desku 8×8 s hrou na světlých polích, přednost většího počtu braných kamenů a zvláštní prioritu dámy. Úplná pravidla je nutné ověřit.
+## 1. Deska
+- Hraje se na desce 8×8.
+- Hraje se na bílých polích.
+- Počet kamenů a přesné počáteční rozestavení článek v tomto oddílu neuvádí.
 
-## Povinné ověření před implementací
-- Přesný rozměr a tvar desky, aktivní pole a orientace.
-- Počet hráčů, počet kamenů a kompletní počáteční rozestavení.
-- Kdo začíná a jak se střídají tahy.
-- Pohyb obyčejného kamene a podmínky proměny.
-- Pohyb dámy/krále a jeho braní.
-- Povinné braní, priorita braní a volba mezi více možnostmi.
-- Vícenásobné braní, pořadí a odstraňování braných kamenů.
-- Podmínky vítězství, prohry a remízy.
-- Autoritativní zdroje pravidel a jejich případné rozpory.
+## 2. Priorita braní
+- Přednost má možnost braní, při které hráč přeskočí větší počet figur.
+- Pokud si hráč může vybrat mezi braním dámy a obyčejného kamene, musí přeskočit dámu.
+- Dáma se při tomto porovnání počítá jako dvě obyčejné figury.
 
-## Implementace
-- Vlastní počáteční rozestavení.
-- Vlastní herní engine; nepoužívat pravidla ani engine jiné varianty jako náhradu.
-- Vlastní automatické testy všech pravidel a hraničních situací.
-- Vlastní strategické vyhodnocování AI.
+## 3. Co zdroj výslovně neurčuje
+Článek nepopisuje běžný pohyb kamenů, pohyb a dosah dámy, směr braní, pravidla vícenásobného braní, proměnu ani podmínky remízy. Tyto údaje je nutné před implementací ověřit z úplných pravidel Španělské dámy.
 
-## Zdroje
-- Přehled názvu varianty: https://cs.wikipedia.org/wiki/Dáma_(desková_hra)
-- Autoritativní úplný zdroj pravidel: DOPLNIT
-
-Dokud nejsou všechny zásadní body ověřené, nesmí být varianta spuštěna jako hratelná partie.
+## Zdroj
+- Česká Wikipedie – [Dáma (desková hra)](https://cs.wikipedia.org/wiki/Dáma_(desková_hra)), oddíl „Španělská dáma“.
