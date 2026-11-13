@@ -57,7 +57,7 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 
 ## 4. Aktuální verze
 
-**Aktuální projektová verze: 01.00.005**
+**Aktuální projektová verze: 01.00.006**
 
 <details>
 <summary>Počáteční záznam – 01.00.000</summary>
@@ -113,6 +113,17 @@ Následující seznam je pracovní přehled. Stav se musí změnit až podle sku
 | R-010 | Nasazení | Ověřit bezpečné automatické nasazení na Webzdarma bez přepsání `.env` | PLÁN |
 
 ## 6. Záznamy významných změn
+
+### 01.00.006 – Dočasné zpřístupnění náhledu desky 10×10
+
+- **Datum:** 2026-11-13
+- **Stav:** ROZPRACOVÁNO
+- **Změna:** Ve výběru místní hry je aktivní volba Mezinárodní dáma 10×10 – test zobrazení. Vybraná varianta se předává do herní obrazovky a renderer vykreslí mřížku 10×10 se čtyřmi úvodními řadami kamenů na každé straně. Nadpis a popis obrazovky rozlišují testovací náhled.
+- **Omezení:** Jde pouze o vizuální test desky. Pravidla mezinárodní dámy, validace tahů, herní logika a AI pro 10×10 nejsou implementované.
+- **Důvod:** Umožnit uživateli otestovat velikost a zobrazení desky 10×10 bez předstírání, že je varianta plně hratelná.
+- **Dotčené soubory:** `pages/create.html`, `assets/js/screens/create.js`, `assets/js/screens/game.js`, `assets/js/board-2d.js`, `docs/REQUIREMENTS.md`, `docs/ROADMAP.md`
+- **Ověření:** Čeká na GitHub Actions a vizuální kontrolu na zařízení.
+- **Commity:** `08aa22e87c57775e93ea84b261484f4ad801c44a`, `e8ab3b648e69d844ab23567c99332f81bef8c1cc`, `0ae3b5e41452e9ceb3f4e6fd237773b94b697115`, `2f3a857a94ee00a40d0398f2346646c2274e21a7`, `ddc79f8f1354ae5f1b79f68ff170c6a7a3efb448`
 
 ### 01.00.005 – Stejné rozměry všech políček 2D desky
 
