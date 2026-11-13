@@ -60,11 +60,12 @@ U plánovaných položek se uvede očekávaný výsledek a závislosti. Nevypln�
 ### 01.00.019 – Vlastní výběr variant a jednotné písmo 10 px
 
 - **Datum:** 2026-11-13
-- **Stav:** ROZPRACOVÁNO
+- **Stav:** HOTOVO
 - **Změna:** Nativní systémový seznam variant byl nahrazen vlastním přístupným rozbalovacím seznamem, který zachovává skupiny, pořadí i deaktivované varianty. Velikost písma v celé aplikaci byla sjednocena na 10 px.
 - **Důvod:** Umožnit kontrolu velikosti textu i v rozbaleném seznamu na mobilních zařízeních a sjednotit typografii napříč obrazovkami.
 - **Dotčené soubory:** `assets/css/app.css`, `assets/js/screens/create.js`, `docs/ROADMAP.md`
-- **Ověření:** Čeká na syntaktickou a funkční kontrolu; živé nasazení zatím nepotvrzeno.
+- **Ověření:** GitHub Actions run [#193](https://github.com/m4tk0n/dama/actions/runs/43439130936) úspěšně dokončil kontrolu syntaxe PHP/JavaScriptu, FTP synchronizaci a HTTP health check.
+- **Commity:** CSS `aa7395e9ec2e17af2847caa7e11560aa97ad55ea`, JavaScript `b45d548f1c5713ecc7584795fd5a6a5c3b2b0889`, první záznam roadmapy `2260880a6427313c610945ab70d6d3d4159bda56`.
 
 **Aktuální projektová verze: 01.00.019**
 
